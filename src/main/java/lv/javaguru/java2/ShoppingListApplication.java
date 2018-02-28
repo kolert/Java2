@@ -16,24 +16,32 @@ public class ShoppingListApplication {
 
         List<Product> products = new ArrayList<>();
         while (true) {
-            printProgramMenu();
-            int menuItem = getFromUserMenuItemToExecute();
-            if (menuItem == 4) {
-                break;
-            }
-            switch (menuItem) {
-                case 1: {
-                    addProductToList(products);
+            try {
+                printProgramMenu();
+                int menuItem = getFromUserMenuItemToExecute();
+                if (menuItem == 4) {
                     break;
                 }
-                case 2: {
-                    removeProductFromList(products);
-                    break;
+                switch (menuItem) {
+                    case 1: {
+                        addProductToList(products);
+                        break;
+                    }
+                    case 2: {
+                        removeProductFromList(products);
+                        break;
+                    }
+                    case 3: {
+                        printShoppingListToConsole(products);
+                        break;
+                    }
+                    default: {
+                        System.out.println("Invalid value entered! Try again!");
+                        break;
+                    }
                 }
-                case 3: {
-                    printShoppingListToConsole(products);
-                    break;
-                }
+            }catch(Exception e){
+                System.out.println(e.getMessage());
             }
         }
 
@@ -53,6 +61,7 @@ public class ShoppingListApplication {
         products.add(product);
         System.out.println("Add product to list execution end!");
         System.out.println();
+        sc.close();
     }
 
     private static void removeProductFromList(List<Product> products) {
@@ -73,6 +82,7 @@ public class ShoppingListApplication {
         }
         System.out.println("Remove product from list execution end!");
         System.out.println();
+        sc.close();
     }
 
     private static void printShoppingListToConsole(List<Product> products) {
@@ -96,7 +106,13 @@ public class ShoppingListApplication {
     private static int getFromUserMenuItemToExecute() {
         System.out.print("Please enter menu item number to execute:");
         Scanner sc = new Scanner(System.in);
-        return Integer.parseInt(sc.nextLine());
+        String input = sc.nextLine();
+        sc.close();
+        if(input.matches("[0-9]+")) {
+            return Integer.parseInt(input);
+        }else{
+            return 0;
+        }
     }
 
 }
