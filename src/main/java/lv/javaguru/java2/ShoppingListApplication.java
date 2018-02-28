@@ -15,8 +15,8 @@ public class ShoppingListApplication {
         // 4. Exit
 
         List<Product> products = new ArrayList<>();
-        while (true) {
-            try {
+        try {
+            while (true) {
                 printProgramMenu();
                 int menuItem = getFromUserMenuItemToExecute();
                 if (menuItem == 4) {
@@ -37,12 +37,11 @@ public class ShoppingListApplication {
                     }
                     default: {
                         System.out.println("Invalid value entered! Try again!");
-                        break;
                     }
                 }
-            }catch(Exception e){
-                System.out.println(e.getMessage());
             }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
 
     }
@@ -61,7 +60,6 @@ public class ShoppingListApplication {
         products.add(product);
         System.out.println("Add product to list execution end!");
         System.out.println();
-        sc.close();
     }
 
     private static void removeProductFromList(List<Product> products) {
@@ -82,7 +80,6 @@ public class ShoppingListApplication {
         }
         System.out.println("Remove product from list execution end!");
         System.out.println();
-        sc.close();
     }
 
     private static void printShoppingListToConsole(List<Product> products) {
@@ -107,7 +104,6 @@ public class ShoppingListApplication {
         System.out.print("Please enter menu item number to execute:");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        sc.close();
         if(input.matches("[0-9]+")) {
             return Integer.parseInt(input);
         }else{
