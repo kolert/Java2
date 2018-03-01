@@ -1,13 +1,10 @@
-package lv.javaguru.java2;
+package lv.javaguru.java2.lessons;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
-public class ShoppingListApplication {
+public class ShoppingListApplication  {
 
-    public static void main(String[] args) {
+    public void productFunction() {
         // Use cases:
         // 1. Add product to list
         // 2. Remove product from list
@@ -104,11 +101,10 @@ public class ShoppingListApplication {
         System.out.print("Please enter menu item number to execute:");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        if(input.matches("[0-9]+")) {
+        if (input.matches("[0-9]+")) {
             return Integer.parseInt(input);
-        }else{
+        } else {
             return 0;
         }
     }
-
 }
