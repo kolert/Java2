@@ -1,4 +1,4 @@
-package lv.javaguru.java2;
+package lv.javaguru.java2.lessons;
 
 public class Product {
 
@@ -47,3 +47,4 @@ public class Product {
                 '}';
     }
 }
+
