@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class RegisterUserController {
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String dispayUser(HttpServletRequest request,Model model) {
-        return "user/register";
+        return "user/registration";
     }
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registeUser(HttpServletRequest request,Model model) {
         model.addAttribute("h1Text","Text from controller");
-        return "user/register";
+        return "user/registration";
     }
 }
 
