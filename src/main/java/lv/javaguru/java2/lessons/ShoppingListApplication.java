@@ -1,4 +1,4 @@
-package lv.javaguru.java2;
+package lv.javaguru.java2.lessons;
 
 import lv.javaguru.java2.database.ProductDatabase;
 import lv.javaguru.java2.database.ProductInMemoryDatabase;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ShoppingListApplication {
 
-    public static void main(String[] args) {
+    public void mainLessonLauncher() {
         // Use cases:
         // 1. Add product to list
         // 2. Remove product from list

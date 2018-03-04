@@ -1,29 +1,26 @@
 package lv.javaguru.java2.controllers;
 
 
-import lv.javaguru.java2.lessons.Product;
-import org.ocpsoft.rewrite.annotation.Join;
-import org.ocpsoft.rewrite.el.ELBeanName;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@Scope(value = "session")
-@Component(value = "homeController")
-@ELBeanName(value = "homeController")
-@Join(path = "/", to = "/views/home/main.jsf")
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
+@Controller
 public class HomeController {
 
-    @Autowired
-    private Product product = new Product();
+    // inject via application.properties
+    @Value("${welcome.message:test}")
+    private String message = "Starting Page";
 
-    public String save() {
-        product = new Product();
-        return "/product-list.xhtml?faces-redirect=true";
-    }
-
-    public Product getProduct() {
-        return product;
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(HttpServletRequest request,Model model) {
+        model.addAttribute("h1Text","Text from controller");
+        return "home";
     }
 }
 

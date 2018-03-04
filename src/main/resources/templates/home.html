@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+    <h1 th:text="${h1Text}">Default test</h1>
+    <div th:replace="layouts/mainLayout :: footer"></div>
+</body>
+</html>
