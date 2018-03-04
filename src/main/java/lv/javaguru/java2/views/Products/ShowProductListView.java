@@ -1,7 +1,8 @@
-package lv.javaguru.java2.views;
+package lv.javaguru.java2.views.Products;
 
-import lv.javaguru.java2.lessons.Product;
-import lv.javaguru.java2.database.ProductDatabase;
+import lv.javaguru.java2.models.Product;
+import lv.javaguru.java2.database.Products.ProductDatabase;
+import lv.javaguru.java2.views.View;
 
 public class ShowProductListView implements View {
 
@@ -12,7 +13,7 @@ public class ShowProductListView implements View {
     }
 
     @Override
-    public void execute() {
+    public void execute(Object model) {
         System.out.println();
         System.out.println("Print shopping list to console execution start!");
         for (Product product : database.getAllProducts()) {
@@ -21,5 +22,8 @@ public class ShowProductListView implements View {
         System.out.println("Print shopping list to console execution end!");
         System.out.println();
     }
-
+    @Override
+    public Object get(){
+        return null;
+    }
 }

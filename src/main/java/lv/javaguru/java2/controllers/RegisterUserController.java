@@ -1,6 +1,18 @@
 package lv.javaguru.java2.controllers;
 
 
+import lv.javaguru.java2.database.Products.ProductDatabase;
+import lv.javaguru.java2.database.Products.ProductInMemoryDatabase;
+import lv.javaguru.java2.database.Users.UserDatabase;
+import lv.javaguru.java2.database.Users.UserInMemoryDatabase;
+import lv.javaguru.java2.models.UserModel;
+import lv.javaguru.java2.views.Products.AddProductView;
+import lv.javaguru.java2.views.Products.ProgramExitView;
+import lv.javaguru.java2.views.Products.RemoveProductView;
+import lv.javaguru.java2.views.Products.ShowProductListView;
+import lv.javaguru.java2.views.Users.AddUserView;
+import lv.javaguru.java2.views.Users.ShowUserListView;
+import lv.javaguru.java2.views.View;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -31,26 +43,25 @@ public class RegisterUserController {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
-        Map<String,String> userMap = new HashMap<>();
-        userMap.put("login",login);
-        userMap.put("password",password);
-        userMap.put("repPassword",repPassword);
-        userMap.put("name",name);
-        userMap.put("surname",surname);
-        userMap.put("email",email);
 
-        List<Map<String,String>> users = (List<Map<String,String>>) request.getSession().getAttribute("users");
-        if(users!=null){
-            users.add(userMap);
-        }else{
-            users = new ArrayList<>();
-            users.add(userMap);
-            request.getSession().setAttribute("users",users);
-        }
+        UserModel userModel = new UserModel();
+        userModel.setLogin(login);
+        userModel.setPassword(password);
+        userModel.setName(name);
+        userModel.setSurname(surname);
+        userModel.setEmail(email);
+
         //TODO createUser
 
+
+        UserDatabase database = new UserInMemoryDatabase();
+
+        View addUserView = new AddUserView(database);
+        addUserView.execute(userModel);
+
+        View showProductView = new ShowUserListView(database);
         //TODO getUser
-        model.addAttribute("users",users);
+        model.addAttribute("users",showProductView.get());
         return "user/userList";
     }
 }

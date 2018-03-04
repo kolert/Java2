@@ -11,6 +11,7 @@
             <thead>
             <tr>
                 <td>Login</td>
+                <td>Password</td>
                 <td>Name</td>
                 <td>Surname</td>
                 <td>Email</td>
@@ -21,10 +22,11 @@
                 <td colspan="4">No users</td>
             </tr>
             <tr th:each="user : ${users}">
-                <td th:text="${user.get('login')}"></td>
-                <td th:text="${user.get('name')}"></td>
-                <td th:text="${user.get('surname')}"></td>
-                <td th:text="${user.get('email')}"></td>
+                <td th:text="${user.getLogin()}"></td>
+                <td th:text="${user.getPassword()}"></td>
+                <td th:text="${user.getName()}"></td>
+                <td th:text="${user.getSurname()}"></td>
+                <td th:text="${user.getEmail()}"></td>
             </tr>
             </tbody>
         </table>

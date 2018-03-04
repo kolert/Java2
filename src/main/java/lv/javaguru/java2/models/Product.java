@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessons;
+package lv.javaguru.java2.models;
 
 public class Product {
 

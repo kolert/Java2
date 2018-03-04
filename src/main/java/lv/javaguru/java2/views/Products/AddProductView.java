@@ -1,7 +1,8 @@
-package lv.javaguru.java2.views;
+package lv.javaguru.java2.views.Products;
 
-import lv.javaguru.java2.businesslogic.AddProductService;
-import lv.javaguru.java2.database.ProductDatabase;
+import lv.javaguru.java2.businesslogic.Products.AddProductService;
+import lv.javaguru.java2.database.Products.ProductDatabase;
+import lv.javaguru.java2.views.View;
 
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class AddProductView implements View {
     }
 
     @Override
-    public void execute() {
+    public void execute(Object model) {
         System.out.println();
         System.out.println("Add product to list execution start!");
         Scanner sc = new Scanner(System.in);
@@ -27,6 +28,10 @@ public class AddProductView implements View {
 
         System.out.println("Add product to list execution end!");
         System.out.println();
+    }
+    @Override
+    public Object get(){
+        return null;
     }
 
 }

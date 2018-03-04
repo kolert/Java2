@@ -1,7 +1,7 @@
-package lv.javaguru.java2.businesslogic;
+package lv.javaguru.java2.businesslogic.Products;
 
-import lv.javaguru.java2.lessons.Product;
-import lv.javaguru.java2.database.ProductDatabase;
+import lv.javaguru.java2.models.Product;
+import lv.javaguru.java2.database.Products.ProductDatabase;
 
 import java.util.Optional;
 
