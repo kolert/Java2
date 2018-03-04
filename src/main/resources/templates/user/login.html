@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Log In</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+    <h1 th:text="${h1Text}">Default test</h1>
+    <div th:replace="layouts/mainLayout :: footer"></div>
+
+    <form class="form-horizontal" action='/registration' method="POST">
+        <fieldset>
+            <div id="legend">
+                <legend class="">Log In</legend>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="email">E-mail</label>
+                <div class="controls">
+                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-info">Log In</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
