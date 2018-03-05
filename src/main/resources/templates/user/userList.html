@@ -6,6 +6,8 @@
     <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
 </head>
 <body>
+<div th:replace="layouts/mainLayout :: nav"></div>
+<div class="container">
     <div>
         <table class="table table-bordered table-striped">
             <thead>
@@ -31,5 +33,6 @@
             </tbody>
         </table>
     </div>
+</div>
 </body>
 </html>

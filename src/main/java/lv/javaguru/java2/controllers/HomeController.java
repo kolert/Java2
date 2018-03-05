@@ -19,7 +19,6 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(HttpServletRequest request,Model model) {
-        model.addAttribute("h1Text","Yolo");
         return "home";
     }
 }

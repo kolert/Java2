@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Registration</title>
     <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
 </head>
 <body>
-    <h1 th:text="${h1Text}">Default test</h1>
-    <div th:replace="layouts/mainLayout :: footer"></div>
+<div th:replace="layouts/mainLayout :: nav"></div>
 
+<div class="container">
     <form class="form-horizontal" action='/registration' method="POST">
         <fieldset>
             <div id="legend">
@@ -72,5 +68,7 @@
             </div>
         </fieldset>
     </form>
+</div>
+<div th:replace="layouts/mainLayout :: footer"></div>
 </body>
 </html>
