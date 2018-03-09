@@ -4,6 +4,7 @@ import lv.javaguru.java2.businesslogic.Products.RemoveProductService;
 import lv.javaguru.java2.businesslogic.Users.RemoveUserService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.views.View;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class RemoveUserView implements View {
         this.removeUserService = new RemoveUserService(database);
     }
     @Override
-    public void execute(Object login) {
+    public void execute(Object login) throws InvalidDataException {
         removeUserService.removeUser((String)login);
     }
 
     @Override
-    public Object get(){
+    public Object get(Object model) throws InvalidDataException {
         return null;
     }
 }

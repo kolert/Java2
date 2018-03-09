@@ -4,6 +4,7 @@ import lv.javaguru.java2.businesslogic.Products.AddProductService;
 import lv.javaguru.java2.businesslogic.Users.AddUserService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.View;
 
@@ -17,11 +18,11 @@ public class AddUserView implements View {
         this.addUserService = new AddUserService(database);
     }
     @Override
-    public Object get(){
+    public Object get(Object model) throws InvalidDataException{
         return null;
     }
     @Override
-    public void execute(Object model) {
+    public void execute(Object model) throws InvalidDataException {
         addUserService.addUser(model);
     }
 

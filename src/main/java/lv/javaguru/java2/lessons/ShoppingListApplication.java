@@ -2,6 +2,7 @@ package lv.javaguru.java2.lessons;
 
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.database.Products.ProductInMemoryDatabase;
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.views.*;
 import lv.javaguru.java2.views.Products.AddProductView;
 import lv.javaguru.java2.views.Products.ProgramExitView;
@@ -38,7 +39,11 @@ public class ShoppingListApplication {
             printProgramMenu();
             int menuItem = getFromUserMenuItemToExecute();
             View view = actionMap.get(menuItem);
-            view.execute(null);
+            try {
+                view.execute(null);
+            }catch(InvalidDataException e){
+                System.out.println(e.getMessage());
+            }
         }
 
     }

@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.database.Products.ProductInMemoryDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.database.Users.UserInMemoryDatabase;
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.Products.AddProductView;
 import lv.javaguru.java2.views.Products.ProgramExitView;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class RegisterUserController {
         return "user/registration";
     }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registeUser(HttpServletRequest request,Model model) {
+    public RedirectView registeUser(HttpServletRequest request, Model model) {
         model.addAttribute("h1Text","Text from controller");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -51,18 +53,14 @@ public class RegisterUserController {
         userModel.setSurname(surname);
         userModel.setEmail(email);
 
-        //TODO createUser
-
-
         UserDatabase database = new UserInMemoryDatabase();
-
-        View addUserView = new AddUserView(database);
-        addUserView.execute(userModel);
-
-        View showProductView = new ShowUserListView(database);
-        //TODO getUser
-        model.addAttribute("users",showProductView.get());
-        return "user/userList";
+        try {
+            View addUserView = new AddUserView(database);
+            addUserView.execute(userModel);
+        }catch(InvalidDataException e){
+            System.out.println(e.getMessage());
+        }
+        return new RedirectView("/login");
     }
 }
 

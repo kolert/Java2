@@ -49,9 +49,12 @@
                         </div>
                     </form>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" th:if="${session.containsKey('authorized')}" th:unless="${session == null}">
                     <li><a href="/registration">Register</a></li>
                     <li><a href="/login">Log In</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" th:if="${!session.containsKey('authorized')}" th:unless="${session != null}">
+                    <li th:text="${session.user}}"></li>
                 </ul>
             </div>
         </nav>

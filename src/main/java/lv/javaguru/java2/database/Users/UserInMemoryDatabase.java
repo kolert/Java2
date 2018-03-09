@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class UserInMemoryDatabase implements UserDatabase {
 
-    private List<UserModel> users = new ArrayList<>();
+    private static List<UserModel> users = new ArrayList<>();
 
     @Override
     public void add(UserModel userModel) {

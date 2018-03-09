@@ -2,6 +2,7 @@ package lv.javaguru.java2.views.Products;
 
 import lv.javaguru.java2.businesslogic.Products.RemoveProductService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.views.View;
 
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class RemoveProductView implements View {
     }
 
     @Override
-    public void execute(Object model) {
+    public void execute(Object model) throws InvalidDataException {
         System.out.println();
         System.out.println("Remove product from list execution start!");
         Scanner sc = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class RemoveProductView implements View {
     }
 
     @Override
-    public String get() {
+    public String get(Object model) throws InvalidDataException {
         return null;
     }
 }

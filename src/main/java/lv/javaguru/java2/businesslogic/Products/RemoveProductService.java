@@ -1,5 +1,6 @@
 package lv.javaguru.java2.businesslogic.Products;
 
+import lv.javaguru.java2.excetions.InvalidDataException;
 import lv.javaguru.java2.models.Product;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 
@@ -13,14 +14,14 @@ public class RemoveProductService {
         this.productDatabase = productDatabase;
     }
 
-    public boolean removeProduct(String title) {
+    public boolean removeProduct(String title) throws InvalidDataException {
         Optional<Product> foundProduct = productDatabase.findByTitle(title);
         if (foundProduct.isPresent()) {
             Product product = foundProduct.get();
             productDatabase.remove(product);
             return true;
         } else {
-            return false;
+            throw new InvalidDataException("No product with title "+title);
         }
     }
 

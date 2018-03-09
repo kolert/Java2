@@ -2,6 +2,7 @@ package lv.javaguru.java2.controllers;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
+@Scope("session")
 public class HomeController {
 
     // inject via application.properties
