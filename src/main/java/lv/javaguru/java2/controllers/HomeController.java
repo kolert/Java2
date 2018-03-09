@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -20,7 +21,7 @@ public class HomeController {
     private String message = "Starting Page";
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(HttpServletRequest request,Model model) {
+    public String home(HttpServletRequest request, HttpSession session, Model model) {
         return "home";
     }
 }

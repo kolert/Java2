@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,13 +29,13 @@ import java.util.Optional;
 public class LogInUserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String home(HttpServletRequest request,Model model) {
+    public String home(HttpServletRequest request,HttpSession session, Model model) {
         return "user/login";
     }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public RedirectView onPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String onPost(HttpServletRequest request, HttpSession session, Model model) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         Optional<UserModel> user = null;
@@ -51,12 +52,12 @@ public class LogInUserController {
             UserModel userModel = user.get();
             if (userModel.getPassword().equals(password)) {
                 request.getSession(true);
-                request.getSession().setAttribute("authorized",true);
-                request.getSession().setAttribute("user",userModel.getName());
-                return new RedirectView("/userList");
+                session.setAttribute("auth",true);
+                session.setAttribute("userName",userModel.getName());
+                return "redirect:/userList";
             }
         }
-        return new RedirectView("/login");
+        return "user/login";
     }
 }
 

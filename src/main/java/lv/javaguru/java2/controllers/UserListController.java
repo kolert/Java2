@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Scope("session")
 public class UserListController {
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
-    public String registeUser(HttpServletRequest request, Model model) {
+    public String registeUser(HttpServletRequest request, HttpSession session, Model model) {
         try {
             UserDatabase database = new UserInMemoryDatabase();
             View showProductView = new ShowUserListView(database);

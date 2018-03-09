@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class RegisterUserController {
         return "user/registration";
     }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public RedirectView registeUser(HttpServletRequest request, Model model) {
+    public RedirectView registeUser(HttpServletRequest request, HttpSession session, Model model) {
         model.addAttribute("h1Text","Text from controller");
         String login = request.getParameter("login");
         String password = request.getParameter("password");

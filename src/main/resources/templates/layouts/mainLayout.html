@@ -49,12 +49,13 @@
                         </div>
                     </form>
                 </div>
-                <ul class="nav navbar-nav navbar-right" th:if="${session.containsKey('authorized')}" th:unless="${session == null}">
+                <ul class="nav navbar-nav navbar-right" th:if="${session.auth == null || session.auth != true}">
                     <li><a href="/registration">Register</a></li>
                     <li><a href="/login">Log In</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" th:if="${!session.containsKey('authorized')}" th:unless="${session != null}">
-                    <li th:text="${session.user}}"></li>
+                <ul class="nav navbar-nav navbar-right" th:if="${session.auth == true}">
+                    <li th:text="${session.userName}"></li>
+                    <li><a href="/logout">Log Out</a></li>
                 </ul>
             </div>
         </nav>
