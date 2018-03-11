@@ -1,6 +1,6 @@
 package lv.javaguru.java2.businesslogic.Products;
 
-import lv.javaguru.java2.excetions.InvalidDataException;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.Product;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 

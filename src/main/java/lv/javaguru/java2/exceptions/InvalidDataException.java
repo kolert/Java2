@@ -1,4 +1,4 @@
-package lv.javaguru.java2.excetions;
+package lv.javaguru.java2.exceptions;
 
 public class InvalidDataException extends Exception {
     private String message;

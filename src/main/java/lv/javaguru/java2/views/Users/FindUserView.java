@@ -1,11 +1,10 @@
 package lv.javaguru.java2.views.Users;
 
 import lv.javaguru.java2.database.Users.UserDatabase;
-import lv.javaguru.java2.excetions.InvalidDataException;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.View;
 
-import java.util.List;
 import java.util.Optional;
 
 public class FindUserView implements View {

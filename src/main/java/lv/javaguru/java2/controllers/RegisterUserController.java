@@ -1,20 +1,12 @@
 package lv.javaguru.java2.controllers;
 
 
-import lv.javaguru.java2.database.Products.ProductDatabase;
-import lv.javaguru.java2.database.Products.ProductInMemoryDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.database.Users.UserInMemoryDatabase;
-import lv.javaguru.java2.excetions.InvalidDataException;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
-import lv.javaguru.java2.views.Products.AddProductView;
-import lv.javaguru.java2.views.Products.ProgramExitView;
-import lv.javaguru.java2.views.Products.RemoveProductView;
-import lv.javaguru.java2.views.Products.ShowProductListView;
 import lv.javaguru.java2.views.Users.AddUserView;
-import lv.javaguru.java2.views.Users.ShowUserListView;
 import lv.javaguru.java2.views.View;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +16,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Scope("session")
 @Controller
@@ -56,7 +44,7 @@ public class RegisterUserController {
 
         UserDatabase database = new UserInMemoryDatabase();
         try {
-            View addUserView = new AddUserView(database);
+            View addUserView = new AddUserView(database, null);
             addUserView.execute(userModel);
         }catch(InvalidDataException e){
             System.out.println(e.getMessage());

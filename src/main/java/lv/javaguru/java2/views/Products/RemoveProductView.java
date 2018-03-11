@@ -2,7 +2,7 @@ package lv.javaguru.java2.views.Products;
 
 import lv.javaguru.java2.businesslogic.Products.RemoveProductService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
-import lv.javaguru.java2.excetions.InvalidDataException;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
 
 import java.util.Scanner;

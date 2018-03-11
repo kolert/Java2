@@ -1,8 +1,6 @@
 package lv.javaguru.java2.views;
 
-import lv.javaguru.java2.excetions.InvalidDataException;
-
-import java.util.List;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 
 public interface View {
 

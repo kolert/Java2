@@ -23,6 +23,7 @@ public class UserResponse {
     }
 
     public UserResponse(boolean success, Error error){
-
+        this.success = success;
+        this.error = error;
     }
 }

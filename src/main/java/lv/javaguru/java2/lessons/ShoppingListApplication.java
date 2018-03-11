@@ -2,7 +2,7 @@ package lv.javaguru.java2.lessons;
 
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.database.Products.ProductInMemoryDatabase;
-import lv.javaguru.java2.excetions.InvalidDataException;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.*;
 import lv.javaguru.java2.views.Products.AddProductView;
 import lv.javaguru.java2.views.Products.ProgramExitView;
