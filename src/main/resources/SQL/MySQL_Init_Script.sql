@@ -1,0 +1,18 @@
+/* CREATING DATABASE SHEMA */
+CREATE SCHEMA `java2` ;
+
+/* CREATING USERS TABLE */
+CREATE TABLE `java2`.`users` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `NAME` VARCHAR(245) NOT NULL,
+  `SURNAME` VARCHAR(245) NOT NULL,
+  `LOGIN` VARCHAR(245) NOT NULL,
+  `PASSWORD` VARCHAR(245) NOT NULL,
+  `CREATED` DATETIME NOT NULL,
+  `EMAIL` VARCHAR(245) NOT NULL,
+  `ROLE` VARCHAR(1) NOT NULL,
+  PRIMARY KEY (`ID`));
+
+/* CREATING ADMIN USER */
+INSERT INTO java2.users(`name`,`surname`,`login`,`password`,`created`,`email`,`role`)
+VALUES ('SUPER','ADMIN','sa','admin',NOW(),'info@example.com','A');
