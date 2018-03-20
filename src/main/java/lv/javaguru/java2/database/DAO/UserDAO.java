@@ -20,7 +20,7 @@ public class UserDAO extends JDBCDatabase
         Connection connection = null;
         try {
             connection = getConnection();
-            String sql = "insert into PRODUCTS(id, login, password, created, name, surname, email) " +
+            String sql = "insert into USERS(id, login, password, created, name, surname, email) " +
                     "values(default, ?, ?, NOW(), ?, ?, ?)";
             PreparedStatement ps =
                     connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -46,14 +46,14 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public Optional<UserModel> findByLogin(String title) {
+    public Optional<UserModel> findByLogin(String login) {
         Connection connection = null;
 
         try {
             connection = getConnection();
             String sql = "select * from USERS where LOGIN = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, title);
+            preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserModel user = null;
             if (resultSet.next()) {
@@ -74,9 +74,10 @@ public class UserDAO extends JDBCDatabase
         Connection connection = null;
         try {
             connection = getConnection();
-            String sql = "delete from USERS where id = ?";
+            String sql = "UPDATE USERS SET STATUS='D' WHERE ID=? and login=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, user.getId());
+            preparedStatement.setString(2,user.getLogin());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.delete()");

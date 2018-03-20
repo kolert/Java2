@@ -1,5 +1,6 @@
 package lv.javaguru.java2.views.Users;
 
+import lv.javaguru.java2.database.DAO.UserDAO;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
@@ -12,6 +13,9 @@ public class ShowUserListView implements View {
 
     public ShowUserListView(UserDatabase database) {
         this.database = database;
+    }
+    public ShowUserListView() {
+        this.database = new UserDAO();
     }
 
     @Override

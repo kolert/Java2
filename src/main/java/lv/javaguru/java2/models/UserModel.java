@@ -4,6 +4,8 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import lv.javaguru.java2.businesslogic.helper.Error;
 import lv.javaguru.java2.businesslogic.responses.UserResponse;
 
+import java.util.Date;
+
 public class UserModel {
 
     private String login;
@@ -11,6 +13,24 @@ public class UserModel {
     private String name;
     private String surname;
     private String email;
+    private Long id;
+    private Date created;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
     public String getLogin() {
         return login;

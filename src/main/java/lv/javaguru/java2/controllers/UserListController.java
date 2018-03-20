@@ -20,8 +20,8 @@ public class UserListController {
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
     public String registeUser(HttpServletRequest request, HttpSession session, Model model) {
         try {
-            UserDatabase database = new UserInMemoryDatabase();
-            View showProductView = new ShowUserListView(database);
+            //UserDatabase database = new UserInMemoryDatabase();
+            View showProductView = new ShowUserListView();
             model.addAttribute("users", showProductView.get(null));
         }catch(InvalidDataException e){
             System.out.println(e.getMessage());
