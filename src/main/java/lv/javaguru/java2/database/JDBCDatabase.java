@@ -33,11 +33,19 @@ public class JDBCDatabase {
     }
 
     private void initDatabaseConnectionProperties() {
-        Properties properties = ConfigParser.getProperties();
-        jdbcUrl = properties.getProperty("jdbc.url");
-        driverClass = properties.getProperty("jdbc.driverClass");
-        userName = properties.getProperty("jdbc.userName");
-        password = properties.getProperty("jdbc.password");
+        ConfigParser parser = new ConfigParser();
+        Properties properties = parser.loadProperties();
+
+        jdbcUrl = properties.getProperty("url");
+        driverClass = properties.getProperty("driverClass");
+        userName = properties.getProperty("userName");
+        password = properties.getProperty("password");
+
+
+//        jdbcUrl = "jdbc:mysql://localhost:3306/java2";
+//        driverClass = "com.mysql.jdbc.Driver";
+//        userName = "SYSDBA";
+//        password = "masterkey";
     }
 
     protected Connection getConnection() {

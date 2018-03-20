@@ -19,7 +19,7 @@ public class ConfigParser {
         ConfigParser.properties = properties;
     }
 
-    public void loadProperties() {
+    public Properties loadProperties() {
         StringBuilder result = new StringBuilder("");
 
         //Get file from resources folder
@@ -42,7 +42,7 @@ public class ConfigParser {
                 }
             }
         }
-        properties = prop;
+        return prop;
 
     }
 }
