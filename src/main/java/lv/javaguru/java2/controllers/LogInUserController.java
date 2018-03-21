@@ -33,8 +33,7 @@ public class LogInUserController {
         String password = request.getParameter("password");
         Optional<UserModel> user = null;
         try {
-            UserDatabase database = new UserInMemoryDatabase();
-            View findUserView = new FindUserView(database);
+            View findUserView = new FindUserView();
             System.out.println(login);
             user =(Optional<UserModel>) findUserView.get(login);
         }catch(InvalidDataException e){

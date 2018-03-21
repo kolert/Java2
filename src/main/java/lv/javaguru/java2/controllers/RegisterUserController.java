@@ -41,10 +41,8 @@ public class RegisterUserController {
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
-
-        UserDatabase database = new UserInMemoryDatabase();
         try {
-            View addUserView = new AddUserView(database, null);
+            View addUserView = new AddUserView();
             addUserView.execute(userModel);
         }catch(InvalidDataException e){
             System.out.println(e.getMessage());

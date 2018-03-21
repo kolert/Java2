@@ -20,8 +20,8 @@ public class UserDAO extends JDBCDatabase
         Connection connection = null;
         try {
             connection = getConnection();
-            String sql = "insert into USERS(id, login, password, created, name, surname, email) " +
-                    "values(default, ?, ?, NOW(), ?, ?, ?)";
+            String sql = "insert into USERS(id, login, password, created, name, surname, email, role) " +
+                    "values(default, ?, ?, NOW(), ?, ?, ?, ?)";
             PreparedStatement ps =
                     connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -30,6 +30,7 @@ public class UserDAO extends JDBCDatabase
             ps.setString(3, user.getName());
             ps.setString(4,user.getSurname());
             ps.setString(5,user.getEmail());
+            ps.setString(6,"U");
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
