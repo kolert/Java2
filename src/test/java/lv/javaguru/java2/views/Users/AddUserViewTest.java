@@ -42,6 +42,8 @@ public class AddUserViewTest {
 
         assertEquals(response.isSuccess(),false);
         assertEquals(response.getError().getField(),"login");
+        assertEquals(response.getError().getField(),"name");
+        assertEquals(response.getError().getField(),"surname");
         assertEquals(response.getError().getMessage(), "Can not be empty!");
     }
 

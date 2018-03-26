@@ -87,10 +87,10 @@ public class UserModel {
         System.out.println(toString());
         if(this.login == null || this.login.isEmpty()){
             return new UserResponse(false, new Error("Login","Can not be empty!"));
-//        }else if(this.surname == null || this.surname.isEmpty()){
-//            return new UserResponse(false,new Error("Surname","Can not be empty!"));
-//        }else if(this.login == null || this.login.isEmpty()){
-//            return new UserResponse(false,new Error("Name","Can not be empty!"));
+        }else if(this.name == null || this.name.isEmpty()){
+            return new UserResponse(false,new Error("Name","Can not be empty!"));
+        }else if(this.surname == null || this.surname.isEmpty()){
+            return new UserResponse(false,new Error("Surname","Can not be empty!"));
 //        }else if(this.password == null || this.password.isEmpty()){
 //            return new UserResponse(false,new Error("Password","Can not be empty!"));
 //        }else if(this.email == null || this.email.isEmpty()){

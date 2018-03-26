@@ -11,6 +11,8 @@ import java.util.Properties;
 @Component
 public class JDBCDatabase {
 
+    private static final String DB_CONFIG_FILE = "database.properties";
+
     protected String jdbcUrl;
     protected String driverClass;
     protected String userName;

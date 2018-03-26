@@ -11,6 +11,8 @@ public interface UserDatabase {
     void add(UserModel userModel);
 
     Optional<UserModel> findByLogin(String login);
+    Optional<UserModel> findByName(String name);
+    Optional<UserModel> findBySurname(String surname);
 
     void remove(UserModel userModel);
 

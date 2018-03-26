@@ -25,7 +25,10 @@ public class AddUserService {
     public UserResponse addUser(Object model) throws InvalidDataException {
         UserModel userModel = (UserModel) model;
         Optional<UserModel> foundUser = userDatabase.findByLogin(userModel.getLogin());
-        if (!foundUser.isPresent()) {
+        Optional<UserModel> foundUser1 = userDatabase.findByName(userModel.getName());
+        Optional<UserModel> foundUser2 = userDatabase.findBySurname(userModel.getSurname());
+
+        if (!foundUser.isPresent() || !foundUser1.isPresent() || !foundUser2.isPresent()) {
             UserResponse ret = userModel.validate();
             userDatabase.add(userModel);
             return ret;

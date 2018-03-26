@@ -71,6 +71,54 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
+    public Optional<UserModel> findByName(String name) {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            String sql = "select * from USERS where NAME = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            UserModel user = null;
+            if (resultSet.next()) {
+                user = mapUserModel(resultSet);
+            }
+            return Optional.ofNullable(user);
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getByName()");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
+    public Optional<UserModel> findBySurname(String surname) {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            String sql = "select * from USERS where SURNAME = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, surname);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            UserModel user = null;
+            if (resultSet.next()) {
+                user = mapUserModel(resultSet);
+            }
+            return Optional.ofNullable(user);
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getBySurname()");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public void remove(UserModel user) {
         Connection connection = null;
         try {
