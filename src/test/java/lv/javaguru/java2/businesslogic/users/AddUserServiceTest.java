@@ -30,11 +30,12 @@ public class AddUserServiceTest {
     @Test
     public void addUserTest() throws Exception {
         List<Error> errors = new ArrayList<>();
-        Mockito.when(validator.validate("login", "name", "surname")).thenReturn(errors);
+        Mockito.when(validator.validate("login", "name", "surname", "email")).thenReturn(errors);
         UserModel model = new UserModel();
         model.setLogin("login");
         model.setName("name");
         model.setSurname("surname");
+        model.setEmail("email");
         UserResponse response = service.addUser(model);
         assertEquals(response.isSuccess(), true);
         assertEquals(response.getError(), null);

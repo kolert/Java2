@@ -119,6 +119,30 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
+    public Optional<UserModel> findByEmail(String email) {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            String sql = "select * from USERS where EMAIL = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            UserModel user = null;
+            if (resultSet.next()) {
+                user = mapUserModel(resultSet);
+            }
+            return Optional.ofNullable(user);
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getBySurname()");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public void remove(UserModel user) {
         Connection connection = null;
         try {

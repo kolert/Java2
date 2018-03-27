@@ -27,8 +27,9 @@ public class AddUserService {
         Optional<UserModel> foundUser = userDatabase.findByLogin(userModel.getLogin());
         Optional<UserModel> foundUser1 = userDatabase.findByName(userModel.getName());
         Optional<UserModel> foundUser2 = userDatabase.findBySurname(userModel.getSurname());
+        Optional<UserModel> foundUser3 = userDatabase.findByEmail(userModel.getEmail());
 
-        if (!foundUser.isPresent() || !foundUser1.isPresent() || !foundUser2.isPresent()) {
+        if (!foundUser.isPresent() || !foundUser1.isPresent() || !foundUser2.isPresent() || !foundUser3.isPresent()) {
             UserResponse ret = userModel.validate();
             userDatabase.add(userModel);
             return ret;

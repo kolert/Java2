@@ -46,6 +46,13 @@ public class UserInMemoryDatabase implements UserDatabase {
     }
 
     @Override
+    public Optional<UserModel> findByEmail(String email) {
+        return users.stream()
+                .filter(u -> u.getName().equals(email))
+                .findFirst();
+    }
+
+    @Override
     public void remove(UserModel userModel) {
         users.remove(userModel);
     }

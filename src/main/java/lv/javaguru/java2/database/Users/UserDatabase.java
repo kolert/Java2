@@ -13,6 +13,7 @@ public interface UserDatabase {
     Optional<UserModel> findByLogin(String login);
     Optional<UserModel> findByName(String name);
     Optional<UserModel> findBySurname(String surname);
+    Optional<UserModel> findByEmail(String email);
 
     void remove(UserModel userModel);
 
