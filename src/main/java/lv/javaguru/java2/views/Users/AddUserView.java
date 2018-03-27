@@ -5,9 +5,11 @@ import lv.javaguru.java2.businesslogic.validators.AddUserValidator;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AddUserView implements View {
 
+    @Autowired
     private AddUserService addUserService;
 
     public AddUserView(UserDatabase database, AddUserValidator validator) {

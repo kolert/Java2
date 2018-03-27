@@ -41,6 +41,8 @@ public class RegisterUserController {
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
+        userModel.setStatus("A");
+        userModel.setRole("U");
         try {
             View addUserView = new AddUserView();
             addUserView.execute(userModel);

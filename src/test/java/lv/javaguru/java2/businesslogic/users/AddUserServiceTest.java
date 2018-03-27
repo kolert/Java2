@@ -30,7 +30,7 @@ public class AddUserServiceTest {
     @Test
     public void addUserTest() throws Exception {
         List<Error> errors = new ArrayList<>();
-        Mockito.when(validator.validate("login", "name", "surname", "email")).thenReturn(errors);
+        Mockito.when(validator.validate("login","name","surname","email")).thenReturn(errors);
         UserModel model = new UserModel();
         model.setLogin("login");
         model.setName("name");

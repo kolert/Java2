@@ -1,0 +1,23 @@
+/* CREATING DATABASE SHEMA */
+CREATE SCHEMA IF NOT EXISTS `java2` ;
+
+/* CREATING USERS TABLE */
+DROP TABLE IF EXISTS `java2`.`users`;
+CREATE TABLE `java2`.`users` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `NAME` VARCHAR(245) NOT NULL,
+  `SURNAME` VARCHAR(245) NOT NULL,
+  `LOGIN` VARCHAR(245) NOT NULL,
+  `PASSWORD` VARCHAR(245) NOT NULL,
+  `CREATED` DATETIME NOT NULL,
+  `EMAIL` VARCHAR(245) NOT NULL,
+  `ROLE` CHAR(1) NOT NULL,
+  `STATUS` CHAR(1) NOT NULL,
+  PRIMARY KEY (`ID`)
+  )
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 1002;
+
+/* CREATING ADMIN USER */
+INSERT INTO java2.users(`id`,`name`,`surname`,`login`,`password`,`created`,`email`,`role`,`status`)
+VALUES ('1','SUPER','ADMIN','sa','admin',NOW(),'info@example.com','A','A');

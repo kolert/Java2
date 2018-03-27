@@ -15,6 +15,8 @@ public class UserModel {
     private String email;
     private Long id;
     private Date created;
+    private String role;
+    private String status;
 
     public Long getId() {
         return id;
@@ -72,6 +74,22 @@ public class UserModel {
         this.email = email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "UserModel{" +
@@ -80,6 +98,10 @@ public class UserModel {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
+                ", id=" + id +
+                ", created=" + created +
+                ", role='" + role + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 

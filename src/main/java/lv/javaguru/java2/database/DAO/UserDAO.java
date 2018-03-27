@@ -20,8 +20,8 @@ public class UserDAO extends JDBCDatabase
         Connection connection = null;
         try {
             connection = getConnection();
-            String sql = "insert into USERS(id, login, password, created, name, surname, email, role) " +
-                    "values(default, ?, ?, NOW(), ?, ?, ?, ?)";
+            String sql = "insert into USERS(id, login, password, created, name, surname, email, role, status) " +
+                    "values(default, ?, ?, NOW(), ?, ?, ?, ?, ?)";
             PreparedStatement ps =
                     connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -30,7 +30,8 @@ public class UserDAO extends JDBCDatabase
             ps.setString(3, user.getName());
             ps.setString(4,user.getSurname());
             ps.setString(5,user.getEmail());
-            ps.setString(6,"U");
+            ps.setString(6,user.getRole());
+            ps.setString(7,user.getStatus());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -194,7 +195,38 @@ public class UserDAO extends JDBCDatabase
         user.setSurname(resultSet.getString("surname"));
         user.setCreated(resultSet.getDate("created"));
         user.setEmail(resultSet.getString("email"));
+        user.setRole(decodeRole(resultSet.getString("role")));
+        user.setStatus(decodeStatus(resultSet.getString("status")));
         return user;
+    }
+
+    private String decodeRole(String dbCode){
+        String ret = "";
+        switch(dbCode){
+            case "A" :
+                ret = "Admin";
+                break;
+            case "U" :
+                ret = "User";
+                break;
+        }
+        return ret;
+    }
+
+    private String decodeStatus(String dbCode){
+        String ret = "";
+        switch (dbCode){
+            case "A":
+                ret = "Active";
+                break;
+            case "B" :
+                ret = "Blocked";
+                break;
+            case "D" :
+                ret = "Deleted";
+                break;
+        }
+        return ret;
     }
 
 }
