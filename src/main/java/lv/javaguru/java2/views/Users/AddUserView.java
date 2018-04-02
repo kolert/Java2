@@ -12,12 +12,6 @@ public class AddUserView implements View {
     @Autowired
     private AddUserService addUserService;
 
-    public AddUserView(UserDatabase database, AddUserValidator validator) {
-        this.addUserService = new AddUserService(database, validator);
-    }
-    public AddUserView() {
-        this.addUserService = new AddUserService();
-    }
     @Override
     public Object get(Object model) throws InvalidDataException{
         return null;

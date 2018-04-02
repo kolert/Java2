@@ -55,11 +55,14 @@
                     <li><a href="/login">Log In</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" th:if="${session.auth == true}">
-                    <li th:text="${session.userName}"></li>
+                    <li><a href="#" th:text="${session.userName}">User</a></li>
                     <li><a href="/logout">Log Out</a></li>
                 </ul>
             </div>
         </nav>
+        <div class="alert alert-danger" th:if="${error != null}">
+            <strong>Error!</strong> <p th:text="${error}">ERROR</p>
+        </div>
     </div>
     <div th:fragment="footer">
     </div>

@@ -15,10 +15,12 @@ public class RemoveUserService {
     }
 
     public boolean removeUser(String login) throws InvalidDataException {
-        Optional<UserModel> foundUser = userDatabase.findByLogin(login);
+        UserModel remUser = new UserModel();
+        remUser.setLogin(login);
+        Optional<UserModel> foundUser = userDatabase.findUser(remUser);
         if (foundUser.isPresent()) {
-            UserModel product = foundUser.get();
-            userDatabase.remove(product);
+            UserModel user = foundUser.get();
+            userDatabase.remove(user);
             return true;
         } else {
             throw new InvalidDataException("No User foudn with login "+login);

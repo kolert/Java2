@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database.Users;
 
+import lv.javaguru.java2.database.Entities.UserEntity;
 import lv.javaguru.java2.models.Product;
 import lv.javaguru.java2.models.UserModel;
 
@@ -8,12 +9,9 @@ import java.util.Optional;
 
 public interface UserDatabase {
 
-    void add(UserModel userModel);
+    void add(UserEntity userModel);
 
-    Optional<UserModel> findByLogin(String login);
-    Optional<UserModel> findByName(String name);
-    Optional<UserModel> findBySurname(String surname);
-    Optional<UserModel> findByEmail(String email);
+    Optional<UserModel> findUser(UserModel User);
 
     void remove(UserModel userModel);
 

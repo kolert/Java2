@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database.DAO;
 
+import lv.javaguru.java2.database.Entities.UserEntity;
 import lv.javaguru.java2.database.JDBCDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.models.UserModel;
@@ -16,7 +17,7 @@ public class UserDAO extends JDBCDatabase
                                  implements UserDatabase {
 
     @Override
-    public void add(UserModel user) {
+    public void add(UserEntity user) {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -48,20 +49,38 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public Optional<UserModel> findByLogin(String login) {
+    public Optional<UserModel> findUser(UserModel user) {
         Connection connection = null;
 
         try {
             connection = getConnection();
-            String sql = "select * from USERS where LOGIN = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, login);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            UserModel user = null;
-            if (resultSet.next()) {
-                user = mapUserModel(resultSet);
+            String sql = "select * from USERS where 1=1 ";
+            if(user.getId()!=null){
+                sql+="OR ID = ? ";
             }
-            return Optional.ofNullable(user);
+            if(user.getLogin()!=null){
+                sql+="OR LOGIN = ? ";
+            }
+            if(user.getEmail()!=null){
+                sql+="AND EMAIL = ? ";
+            }
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            int i=0;
+            if(user.getId()!=null){
+                preparedStatement.setLong(++i, user.getId());
+            }
+            if(user.getLogin()!=null){
+                preparedStatement.setString(++i, user.getLogin());
+            }
+            if(user.getEmail()!=null){
+                preparedStatement.setString(++i, user.getEmail());
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            UserModel userModel = null;
+            if (resultSet.next()) {
+                userModel = mapUserModel(resultSet);
+            }
+            return Optional.ofNullable(userModel);
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.getByLogin()");
             e.printStackTrace();
@@ -70,79 +89,6 @@ public class UserDAO extends JDBCDatabase
             closeConnection(connection);
         }
     }
-
-    @Override
-    public Optional<UserModel> findByName(String name) {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            String sql = "select * from USERS where NAME = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            UserModel user = null;
-            if (resultSet.next()) {
-                user = mapUserModel(resultSet);
-            }
-            return Optional.ofNullable(user);
-        } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.getByName()");
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
-    @Override
-    public Optional<UserModel> findBySurname(String surname) {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            String sql = "select * from USERS where SURNAME = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, surname);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            UserModel user = null;
-            if (resultSet.next()) {
-                user = mapUserModel(resultSet);
-            }
-            return Optional.ofNullable(user);
-        } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.getBySurname()");
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
-    @Override
-    public Optional<UserModel> findByEmail(String email) {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            String sql = "select * from USERS where EMAIL = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            UserModel user = null;
-            if (resultSet.next()) {
-                user = mapUserModel(resultSet);
-            }
-            return Optional.ofNullable(user);
-        } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.getBySurname()");
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
     @Override
     public void remove(UserModel user) {
         Connection connection = null;

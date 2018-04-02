@@ -20,8 +20,8 @@ public class FindUserView implements View {
     }
 
     @Override
-    public Optional<UserModel> get(Object login) throws InvalidDataException {
-        return database.findByLogin(((String) login));
+    public Optional<UserModel> get(Object user) throws InvalidDataException {
+        return database.findUser(((UserModel) user));
     }
     @Override
     public void execute(Object model) throws InvalidDataException{

@@ -7,6 +7,8 @@ import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.models.UserModel;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -16,16 +18,13 @@ import static org.junit.Assert.assertEquals;
 
 public class AddUserServiceTest {
 
+    @Mock
     private UserDatabase database;
-    private AddUserValidator validator;
-    private AddUserService service;
 
-    @Before
-    public void init(){
-        database = Mockito.mock(UserDatabase.class);
-        validator = Mockito.mock(AddUserValidator.class);
-        service = new AddUserService(database, validator);
-    }
+    @Mock
+    private AddUserValidator validator;
+    @InjectMocks
+    private AddUserService service = new AddUserService();
 
     @Test
     public void addUserTest() throws Exception {

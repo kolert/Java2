@@ -7,6 +7,7 @@ import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.Optional;
@@ -16,14 +17,9 @@ import static org.mockito.ArgumentMatchers.any;
 
 public class AddUserViewTest {
 
-    private UserDatabase userDatabase;
-    private AddUserService service;
+    @Mock private UserDatabase userDatabase;
+    @Mock private AddUserService service;
 
-    @Before
-    public void init(){
-        userDatabase = Mockito.mock(UserDatabase.class);
-        service = new AddUserService(userDatabase, null);
-    }
     @Test
     public void shoudlBeErrorWhenLoginEmpty() {
         UserModel user = Mockito.mock(UserModel.class);
@@ -32,7 +28,7 @@ public class AddUserViewTest {
         user.setPassword("testPass");
         user.setEmail("testEmail");
 
-        Mockito.when(userDatabase.findByLogin("test")).thenReturn(Optional.empty());
+        Mockito.when(userDatabase.findUser(user)).thenReturn(Optional.empty());
 
         UserResponse response = null;
         try {

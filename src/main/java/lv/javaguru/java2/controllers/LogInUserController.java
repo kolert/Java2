@@ -1,9 +1,8 @@
 package lv.javaguru.java2.controllers;
 
 
-import lv.javaguru.java2.database.Users.UserDatabase;
-import lv.javaguru.java2.database.Users.UserInMemoryDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
+import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.Users.FindUserView;
 import lv.javaguru.java2.views.View;
@@ -34,19 +33,23 @@ public class LogInUserController {
         Optional<UserModel> user = null;
         try {
             View findUserView = new FindUserView();
-            System.out.println(login);
-            user =(Optional<UserModel>) findUserView.get(login);
+            UserModel tempUser = new UserModel();
+            tempUser.setLogin(login);
+            user =(Optional<UserModel>) findUserView.get(tempUser);
         }catch(InvalidDataException e){
             System.out.println(e.getMessage());
         }
-        System.out.println(user.toString());
         if (user.isPresent()) {
             UserModel userModel = user.get();
-            if (userModel.getPassword().equals(password)) {
-                request.getSession(true);
-                session.setAttribute("auth",true);
-                session.setAttribute("userName",userModel.getName());
-                return "redirect:/userList";
+            try {
+                if (PasswordFunctions.check(password, userModel.getPassword())){
+                    request.getSession(true);
+                    session.setAttribute("auth", true);
+                    session.setAttribute("userName", userModel.getName());
+                    return "redirect:/userList";
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
         return "user/login";

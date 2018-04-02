@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database.Users;
 
+import lv.javaguru.java2.database.Entities.UserEntity;
 import lv.javaguru.java2.models.Product;
 import lv.javaguru.java2.models.UserModel;
 
@@ -12,12 +13,12 @@ public class UserInMemoryDatabase implements UserDatabase {
     private static List<UserModel> users = new ArrayList<>();
 
     @Override
-    public void add(UserModel userModel) {
-        users.add(userModel);
+    public void add(UserEntity userModel) {
+        users.add(entityToModel(userModel));
     }
 
     @Override
-    public Optional<UserModel> findByLogin(String login) {
+    public Optional<UserModel> findUser(UserModel user) {
 /*
         for (Product product : products) {
             if (product.getTitle().equals(title)) {
@@ -27,28 +28,7 @@ public class UserInMemoryDatabase implements UserDatabase {
         return Optional.empty();
 */
         return users.stream()
-                .filter(u -> u.getLogin().equals(login))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<UserModel> findByName(String name) {
-        return users.stream()
-                .filter(u -> u.getName().equals(name))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<UserModel> findBySurname(String surname) {
-        return users.stream()
-                .filter(u -> u.getName().equals(surname))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<UserModel> findByEmail(String email) {
-        return users.stream()
-                .filter(u -> u.getName().equals(email))
+                .filter(u -> u.getLogin().equals(user.getLogin()))
                 .findFirst();
     }
 
@@ -64,4 +44,15 @@ public class UserInMemoryDatabase implements UserDatabase {
         return allUsers;
     }
 
+    private UserModel entityToModel(UserEntity userEntity){
+        UserModel userModel = new UserModel();
+        userModel.setId(userEntity.getId());
+        userModel.setLogin(userEntity.getLogin());
+        userModel.setPassword(userEntity.getPassword());
+        userModel.setName(userEntity.getName());
+        userModel.setSurname(userEntity.getSurname());
+        userModel.setRole(userEntity.getRole());
+        userModel.setStatus(userEntity.getStatus());
+        return userModel;
+    }
 }
