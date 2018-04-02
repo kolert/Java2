@@ -17,7 +17,7 @@ public class AddUserValidator {
         this.userDatabase = userDatabase;
     }
 
-    public List<Error> validate(String login, String name, String surname, String email) {
+    public static List<Error> validate(String login, String name, String surname, String email) {
         List<Error> errors = new ArrayList<>();
         validateLogin(login).ifPresent(errors::add);
         validateName(name).ifPresent(errors::add);
@@ -26,35 +26,35 @@ public class AddUserValidator {
         return errors;
     }
 
-    private Optional<Error> validateLogin(String login) {
-        if((login == null || login.isEmpty()) && login.matches("[A-Za-z0-9_]+") && login.getBytes(StandardCharsets.UTF_8).length <= this.maxCharacters) {
+    private static Optional<Error> validateLogin(String login) {
+        if((login != null && !login.isEmpty()) && login.matches("[A-Za-z0-9_]+") && login.getBytes(StandardCharsets.UTF_8).length > 2) {
+            return Optional.empty();
+        } else {
             return Optional.of(new Error("login", "Login cannot contain 0 symbols"));
-        } else {
-            return Optional.empty();
         }
     }
 
-    private Optional<Error> validateName(String name) {
-        if((name == null || name.isEmpty()) && name.matches("[A-Z][a-zA-Z]*") && name.getBytes(StandardCharsets.UTF_8).length <= this.maxCharacters) {
+    private static Optional<Error> validateName(String name) {
+        if((name != null || !name.isEmpty()) && name.matches("[A-Z][a-zA-Z]*") && name.getBytes(StandardCharsets.UTF_8).length > 2) {
+            return Optional.empty();
+        } else {
             return Optional.of(new Error("name", "Name cannot contain 0 symbols"));
-        } else {
-            return Optional.empty();
         }
     }
 
-    private Optional<Error> validateSurname(String surname) {
-        if((surname == null || surname.isEmpty()) && surname.matches("[a-zA-z]+([ '-][a-zA-Z]+)*") && surname.getBytes(StandardCharsets.UTF_8).length <= this.maxCharacters) {
+    private static Optional<Error> validateSurname(String surname) {
+        if((surname != null || !surname.isEmpty()) && surname.matches("[a-zA-z]+([ '-][a-zA-Z]+)*") && surname.getBytes(StandardCharsets.UTF_8).length > 2) {
+            return Optional.empty();
+        } else {
             return Optional.of(new Error("surname", "Surname cannot contain 0 symbols"));
-        } else {
-            return Optional.empty();
         }
     }
 
-    private Optional<Error> validateEmail(String email) {
-        if((email == null || email.isEmpty()) && email.matches("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$") && email.getBytes(StandardCharsets.UTF_8).length <= this.maxCharacters) {
-            return Optional.of(new Error("email", "Email cannot contain 0 symbols"));
-        } else {
+    private static Optional<Error> validateEmail(String email) {
+        if((email != null || !email.isEmpty()) && email.matches("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$") && email.getBytes(StandardCharsets.UTF_8).length > 2) {
             return Optional.empty();
+        } else {
+            return Optional.of(new Error("email", "Email cannot contain 0 symbols"));
         }
     }
 }

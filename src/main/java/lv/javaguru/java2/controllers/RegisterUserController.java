@@ -52,10 +52,16 @@ public class RegisterUserController {
         userModel.setEmail(email);
         userModel.setStatus("A");
         userModel.setRole("U");
-//        TODO model validator
-//        AddUserValidator validator = new AddUserValidator();
-//        List<Error> validatorRespose = validator.validate(userModel.getLogin(),userModel.getName(),userModel.getSurname(),userModel.getEmail());
+
+        List<Error> validatorRespose = AddUserValidator.validate(userModel.getLogin(),userModel.getName(),userModel.getSurname(),userModel.getEmail());
+
         boolean success = true;
+
+        for (Error error : validatorRespose){
+            System.out.println(error.toString());
+            if (error.getField() != null)
+                success = false;
+        }
 
         try {
             ApplicationContext applicationContext
@@ -65,7 +71,12 @@ public class RegisterUserController {
             success = false;
             System.out.println(e.getMessage());
         }
-        return new RedirectView("/login");
+        if (success == false){
+            return new RedirectView("/registration");
+        }
+        else {
+            return new RedirectView("/login");
+        }
     }
 }
 

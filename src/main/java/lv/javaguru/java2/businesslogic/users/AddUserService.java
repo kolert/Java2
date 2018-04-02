@@ -9,9 +9,11 @@ import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class AddUserService {
 
     @Autowired
