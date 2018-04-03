@@ -23,6 +23,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Scope("session")
@@ -30,7 +31,7 @@ import java.util.List;
 public class RegisterUserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String dispayUser(HttpServletRequest request,Model model) {
+    public String dispayUser(HttpServletRequest request, Model model) {
         return "user/registration";
     }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -53,21 +54,28 @@ public class RegisterUserController {
         userModel.setStatus("A");
         userModel.setRole("U");
 
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
+
         List<Error> validatorRespose = AddUserValidator.validate(userModel.getLogin(),userModel.getName(),userModel.getSurname(),userModel.getEmail());
 
         boolean success = true;
 
         if (!password.equals(repPassword)){
-            System.out.println("Entered passwords are not equal! Please try again.");
             success = false;
+            redirectAttributes.addFlashAttribute("error", "Entered passwords are not equal! Please try again.");
         }
 
         if (success) {
+            List<String> errormsg = new ArrayList<>();
             for (Error error : validatorRespose) {
                 System.out.println(error.toString());
-                if (error.getField() != null)
+                if (error.getField() != null) {
                     success = false;
+                    errormsg.add(error.getMessage());
+                }
             }
+            redirectAttributes.addFlashAttribute("errorlist", errormsg);
         }
 
         if(success) {
@@ -81,11 +89,12 @@ public class RegisterUserController {
             }
         }
         if (success == false){
-            return new RedirectView("/registration");
+            redirectView.setUrl("/registration");
         }
         else {
-            return new RedirectView("/login");
+            redirectView.setUrl("/login");
         }
+        return redirectView;
     }
 }
 

@@ -63,6 +63,12 @@
         <div class="alert alert-danger" th:if="${error != null}">
             <strong>Error!</strong> <p th:text="${error}">ERROR</p>
         </div>
+        <div class="alert alert-danger" th:if="${errorlist != null}">
+            <strong>Multiple errors!</strong>
+            <div th:each="error : ${errorlist}">
+              <p th:text="${error}"></p>
+            </div>
+        </div>
     </div>
     <div th:fragment="footer">
     </div>
