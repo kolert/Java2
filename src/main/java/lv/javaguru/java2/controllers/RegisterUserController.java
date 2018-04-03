@@ -57,19 +57,28 @@ public class RegisterUserController {
 
         boolean success = true;
 
-        for (Error error : validatorRespose){
-            System.out.println(error.toString());
-            if (error.getField() != null)
-                success = false;
+        if (!password.equals(repPassword)){
+            System.out.println("Entered passwords are not equal! Please try again.");
+            success = false;
         }
 
-        try {
-            ApplicationContext applicationContext
-                    = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-            applicationContext.getBean(AddUserView.class).execute(userModel);
-        }catch(Exception e){
-            success = false;
-            System.out.println(e.getMessage());
+        if (success) {
+            for (Error error : validatorRespose) {
+                System.out.println(error.toString());
+                if (error.getField() != null)
+                    success = false;
+            }
+        }
+
+        if(success) {
+            try {
+                ApplicationContext applicationContext
+                        = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+                applicationContext.getBean(AddUserView.class).execute(userModel);
+            } catch (Exception e) {
+                success = false;
+                System.out.println(e.getMessage());
+            }
         }
         if (success == false){
             return new RedirectView("/registration");
