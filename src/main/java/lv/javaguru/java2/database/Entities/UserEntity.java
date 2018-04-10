@@ -112,4 +112,16 @@ public class UserEntity {
         setStatus(userModel.getStatus());
         setSurname(userModel.getSurname());
     }
+    public UserModel toUserModel(){
+        UserModel user = new UserModel();
+        user.setId(getId());
+        user.setEmail(getEmail());
+        user.setCreated((Date) getCreated());
+        user.setLogin(getLogin());
+        user.setPassword(getPassword());
+        user.setRole(getRole());
+        user.setStatus(getStatus());
+        user.setSurname(getSurname());
+        return user;
+    }
 }

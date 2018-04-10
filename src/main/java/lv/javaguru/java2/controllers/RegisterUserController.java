@@ -66,17 +66,17 @@ public class RegisterUserController {
             redirectAttributes.addFlashAttribute("error", "Entered passwords are not equal! Please try again.");
         }
 
-        if (success) {
-            List<String> errormsg = new ArrayList<>();
-            for (Error error : validatorRespose) {
-                System.out.println(error.toString());
-                if (error.getField() != null) {
-                    success = false;
-                    errormsg.add(error.getMessage());
-                }
-            }
-            redirectAttributes.addFlashAttribute("errorlist", errormsg);
-        }
+//        if (success) {
+//            List<String> errormsg = new ArrayList<>();
+//            for (Error error : validatorRespose) {
+//                System.out.println(error.toString());
+//                if (error.getField() != null) {
+//                    success = false;
+//                    errormsg.add(error.getMessage());
+//                }
+//            }
+//            redirectAttributes.addFlashAttribute("errorlist", errormsg);
+//        }
 
         if(success) {
             try {
@@ -85,7 +85,7 @@ public class RegisterUserController {
                 applicationContext.getBean(AddUserView.class).execute(userModel);
             } catch (Exception e) {
                 success = false;
-                System.out.println(e.getMessage());
+                System.out.println(e);
             }
         }
         if (success == false){
