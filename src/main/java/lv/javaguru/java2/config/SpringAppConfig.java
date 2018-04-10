@@ -12,6 +12,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -19,14 +20,15 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"lv.javaguru.java2"})
 @PropertySource("classpath:database.properties")
+@EnableTransactionManagement
 public class SpringAppConfig {
 
-    @Bean
+    @Bean(name="fucker1")
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean
+    @Bean(name="fucker2")
     public static DataSource dataSource(
             @Value("${jdbc.url}") String jdbcUrl,
             @Value("${driverClass}") String driverClass,
@@ -40,7 +42,7 @@ public class SpringAppConfig {
         return ds;
     }
 
-    @Bean
+    @Bean(name="fucker3")
     public Properties hibernateProperties(
             @Value("${hibernate.dialect}") String dialect,
             @Value("${hibernate.show_sql}") boolean showSql,
@@ -56,7 +58,7 @@ public class SpringAppConfig {
         return properties;
     }
 
-    @Bean
+    @Bean(name="fucker4")
     public SessionFactory sessionFactory(DataSource dataSource,
                                          @Value("${hibernate.packagesToScan}") String packagesToScan,
                                          @Qualifier("hibernateProperties") Properties properties) throws Exception {
@@ -69,7 +71,7 @@ public class SpringAppConfig {
         return sessionFactoryBean.getObject();
     }
 
-    @Bean
+    @Bean(name="fucker5")
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }

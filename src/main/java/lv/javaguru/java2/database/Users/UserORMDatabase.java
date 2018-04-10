@@ -31,6 +31,7 @@ public class UserORMDatabase implements UserDatabase{
     public void remove(UserModel userModel){
         session().delete(userModel);
     }
+    @Override
     public List<UserModel> getAllUsers(){
         List<UserModel> ret = new ArrayList<>();
         return ret;
