@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -23,12 +23,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class SpringAppConfig {
 
-    @Bean(name="fucker1")
+    @Bean(name="propertySourcesPlaceholderConfigurer")
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(name="fucker2")
+    @Bean(name="dataSource")
     public static DataSource dataSource(
             @Value("${jdbc.url}") String jdbcUrl,
             @Value("${driverClass}") String driverClass,
@@ -42,7 +42,7 @@ public class SpringAppConfig {
         return ds;
     }
 
-    @Bean(name="fucker3")
+    @Bean(name="hibernateProperties")
     public Properties hibernateProperties(
             @Value("${hibernate.dialect}") String dialect,
             @Value("${hibernate.show_sql}") boolean showSql,
@@ -58,7 +58,7 @@ public class SpringAppConfig {
         return properties;
     }
 
-    @Bean(name="fucker4")
+    @Bean(name="sessionFactorys")
     public SessionFactory sessionFactory(DataSource dataSource,
                                          @Value("${hibernate.packagesToScan}") String packagesToScan,
                                          @Qualifier("hibernateProperties") Properties properties) throws Exception {
@@ -71,7 +71,7 @@ public class SpringAppConfig {
         return sessionFactoryBean.getObject();
     }
 
-    @Bean(name="fucker5")
+    @Bean(name="transactionManager")
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }

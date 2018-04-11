@@ -4,7 +4,9 @@ import lv.javaguru.java2.businesslogic.users.AddUserService;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddUserView implements View {
 
     @Autowired

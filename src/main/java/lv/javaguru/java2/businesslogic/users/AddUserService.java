@@ -1,15 +1,19 @@
 package lv.javaguru.java2.businesslogic.users;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import lv.javaguru.java2.businesslogic.responses.UserResponse;
 import lv.javaguru.java2.database.Entities.UserEntity;
+import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.database.Users.UserORMDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Component
@@ -18,19 +22,23 @@ public class AddUserService {
     @Autowired
     private AddUserValidator userValidator;
     @Autowired
-    private UserORMDatabase userORMDatabase;
+    private UserDatabase userORMDatabase;
     @Transactional
     public UserResponse addUser(Object model) throws InvalidDataException  {
         UserModel userModel = (UserModel) model;
-        Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
+        userModel.setCreated(new Date());
+        //Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
+        System.out.println("started register");
+        System.out.println(model.toString());
 
-        if (!foundUser.isPresent()) {
+        if (true/*!foundUser.isPresent()*/) {
             UserResponse ret = userModel.validate();
             try {
                 userModel.setPassword(PasswordFunctions.getSaltedHash(userModel.getPassword()));
                 UserEntity userEntity = new UserEntity();
                 userEntity.setModel(userModel);
                 userORMDatabase.add(userEntity);
+                System.out.println("User Inserted");
             }catch(Exception e){
                 e.printStackTrace();
             }

@@ -51,8 +51,8 @@ public class UserInMemoryDatabase implements UserDatabase {
         userModel.setPassword(userEntity.getPassword());
         userModel.setName(userEntity.getName());
         userModel.setSurname(userEntity.getSurname());
-        userModel.setRole(userEntity.getRole());
-        userModel.setStatus(userEntity.getStatus());
+        userModel.setRole(""+userEntity.getRole());
+        userModel.setStatus(""+userEntity.getStatus());
         return userModel;
     }
 }

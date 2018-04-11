@@ -31,8 +31,8 @@ public class UserDAO extends JDBCDatabase
             ps.setString(3, user.getName());
             ps.setString(4,user.getSurname());
             ps.setString(5,user.getEmail());
-            ps.setString(6,user.getRole());
-            ps.setString(7,user.getStatus());
+            ps.setString(6,""+user.getRole());
+            ps.setString(7,""+user.getStatus());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
