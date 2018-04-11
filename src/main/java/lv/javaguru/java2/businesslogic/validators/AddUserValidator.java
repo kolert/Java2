@@ -10,12 +10,7 @@ import java.util.Optional;
 
 public class AddUserValidator {
 
-    private UserDatabase userDatabase;
     private int maxCharacters = 2;
-
-    public AddUserValidator(UserDatabase userDatabase){
-        this.userDatabase = userDatabase;
-    }
 
     public static List<Error> validate(String login, String name, String surname, String email) {
         List<Error> errors = new ArrayList<>();
