@@ -1,11 +1,9 @@
 package lv.javaguru.java2.businesslogic.users;
 
 import lv.javaguru.java2.businesslogic.responses.UserResponse;
-import lv.javaguru.java2.businesslogic.validators.AddUserValidator;
 import lv.javaguru.java2.businesslogic.helper.Error;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.models.UserModel;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

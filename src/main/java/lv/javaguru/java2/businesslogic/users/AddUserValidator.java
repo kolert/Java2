@@ -1,13 +1,15 @@
-package lv.javaguru.java2.businesslogic.validators;
+package lv.javaguru.java2.businesslogic.users;
 
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.businesslogic.helper.Error;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AddUserValidator {
 
     private int maxCharacters = 2;

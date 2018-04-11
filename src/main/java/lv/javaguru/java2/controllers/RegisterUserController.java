@@ -2,15 +2,10 @@ package lv.javaguru.java2.controllers;
 
 
 import lv.javaguru.java2.businesslogic.helper.Error;
-import lv.javaguru.java2.businesslogic.responses.UserResponse;
-import lv.javaguru.java2.businesslogic.validators.AddUserValidator;
+import lv.javaguru.java2.businesslogic.users.AddUserValidator;
 import lv.javaguru.java2.config.SpringAppConfig;
-import lv.javaguru.java2.database.Users.UserDatabase;
-import lv.javaguru.java2.database.Users.UserInMemoryDatabase;
-import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.Users.AddUserView;
-import lv.javaguru.java2.views.View;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +18,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Scope("session")
