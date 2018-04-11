@@ -18,11 +18,11 @@ public class AddUserService {
     @Autowired
     private AddUserValidator userValidator;
     @Autowired
-    private UserORMDatabase userDatabase;
+    private UserORMDatabase userORMDatabase;
     @Transactional
     public UserResponse addUser(Object model) throws InvalidDataException  {
         UserModel userModel = (UserModel) model;
-        Optional<UserModel> foundUser = userDatabase.findUser(userModel);
+        Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
 
         if (!foundUser.isPresent()) {
             UserResponse ret = userModel.validate();
@@ -30,7 +30,7 @@ public class AddUserService {
                 userModel.setPassword(PasswordFunctions.getSaltedHash(userModel.getPassword()));
                 UserEntity userEntity = new UserEntity();
                 userEntity.setModel(userModel);
-                userDatabase.add(userEntity);
+                userORMDatabase.add(userEntity);
             }catch(Exception e){
                 e.printStackTrace();
             }
