@@ -27,11 +27,11 @@ public class AddUserService {
     public UserResponse addUser(Object model) throws InvalidDataException  {
         UserModel userModel = (UserModel) model;
         userModel.setCreated(new Date());
-        //Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
         System.out.println("started register");
         System.out.println(model.toString());
+        Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
 
-        if (true/*!foundUser.isPresent()*/) {
+        if (!foundUser.isPresent()) {
             UserResponse ret = userModel.validate();
             try {
                 userModel.setPassword(PasswordFunctions.getSaltedHash(userModel.getPassword()));
