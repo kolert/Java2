@@ -29,7 +29,7 @@ public class AddUserService {
         userModel.setCreated(new Date());
         System.out.println("started register");
         System.out.println(model.toString());
-        Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
+        Optional<UserEntity> foundUser = userORMDatabase.findUser(userModel);
 
         if (!foundUser.isPresent()) {
             UserResponse ret = userModel.validate();

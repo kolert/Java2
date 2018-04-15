@@ -18,9 +18,9 @@ public class FindUserService {
     @Autowired
     private UserDatabase userORMDatabase;
     @Transactional
-    public Optional<UserModel> findUser(Object model) {
+    public Optional<UserEntity> findUser(Object model) {
         UserModel userModel = (UserModel) model;
-        Optional<UserModel> foundUser = userORMDatabase.findUser(userModel);
+        Optional<UserEntity> foundUser = userORMDatabase.findUser(userModel);
         return foundUser;
     }
 

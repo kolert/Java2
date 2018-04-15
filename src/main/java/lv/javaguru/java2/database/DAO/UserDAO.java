@@ -49,7 +49,7 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public Optional<UserModel> findUser(UserModel user) {
+    public Optional<UserEntity> findUser(UserModel user) {
         Connection connection = null;
 
         try {
@@ -76,7 +76,7 @@ public class UserDAO extends JDBCDatabase
                 preparedStatement.setString(++i, user.getEmail());
             }
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserModel userModel = null;
+            UserEntity userModel = null;
             if (resultSet.next()) {
                 userModel = mapUserModel(resultSet);
             }
@@ -119,8 +119,8 @@ public class UserDAO extends JDBCDatabase
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                UserModel user = mapUserModel(resultSet);
-                users.add(user);
+                UserEntity user = mapUserModel(resultSet);
+                users.add(user.toUserModel());
             }
         } catch (Throwable e) {
             System.out.println("Exception while getting customer list UserDAOImpl.getAll()");
@@ -132,17 +132,17 @@ public class UserDAO extends JDBCDatabase
         return users;
     }
 
-    private UserModel mapUserModel(ResultSet resultSet) throws SQLException{
-        UserModel user = new UserModel();
+    private UserEntity mapUserModel(ResultSet resultSet) throws SQLException{
+        UserEntity user = new UserEntity();
         user.setId(resultSet.getLong("id"));
         user.setLogin(resultSet.getString("login"));
         user.setPassword(resultSet.getString("password"));
         user.setName(resultSet.getString("name"));
         user.setSurname(resultSet.getString("surname"));
-        user.setCreated(resultSet.getDate("created"));
+        user.setCreated(resultSet.getTimestamp("created"));
         user.setEmail(resultSet.getString("email"));
-        user.setRole(decodeRole(resultSet.getString("role")));
-        user.setStatus(decodeStatus(resultSet.getString("status")));
+        user.setRole(resultSet.getString("role").charAt(0));
+        user.setStatus(resultSet.getString("status").charAt(0));
         return user;
     }
 

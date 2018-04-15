@@ -37,14 +37,14 @@ public class UserORMDatabase implements UserDatabase{
         return ret;
     }
     @Override
-    public Optional<UserModel> findUser(UserModel userModel){
+    public Optional<UserEntity> findUser(UserModel userModel){
         System.out.println("findUsers");
         System.out.println(userModel.getLogin());
         String login = userModel.getLogin();
         UserEntity user = (UserEntity) session().createCriteria(UserEntity.class)
-                .add(Restrictions.eq("login","test"))
+                .add(Restrictions.eq("login",login))
                 .uniqueResult();
-        return Optional.ofNullable(user.toUserModel());
+        return Optional.ofNullable(user);
 
     }
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class UserInMemoryDatabase implements UserDatabase {
 
-    private static List<UserModel> users = new ArrayList<>();
+    private static List<UserEntity> users = new ArrayList<>();
 
     @Override
     public void add(UserEntity userModel) {
@@ -18,7 +18,7 @@ public class UserInMemoryDatabase implements UserDatabase {
     }
 
     @Override
-    public Optional<UserModel> findUser(UserModel user) {
+    public Optional<UserEntity> findUser(UserModel user) {
 /*
         for (Product product : products) {
             if (product.getTitle().equals(title)) {
@@ -40,19 +40,19 @@ public class UserInMemoryDatabase implements UserDatabase {
     @Override
     public List<UserModel> getAllUsers() {
         List<UserModel> allUsers = new ArrayList<>();
-        allUsers.addAll(users);
+        //allUsers.addAll(users);
         return allUsers;
     }
 
-    private UserModel entityToModel(UserEntity userEntity){
-        UserModel userModel = new UserModel();
+    private UserEntity entityToModel(UserEntity userEntity){
+        UserEntity userModel = new UserEntity();
         userModel.setId(userEntity.getId());
         userModel.setLogin(userEntity.getLogin());
         userModel.setPassword(userEntity.getPassword());
         userModel.setName(userEntity.getName());
         userModel.setSurname(userEntity.getSurname());
-        userModel.setRole(""+userEntity.getRole());
-        userModel.setStatus(""+userEntity.getStatus());
+        userModel.setRole(userEntity.getRole());
+        userModel.setStatus(userEntity.getStatus());
         return userModel;
     }
 }

@@ -3,6 +3,7 @@ package lv.javaguru.java2.views.Users;
 import lv.javaguru.java2.businesslogic.users.AddUserService;
 import lv.javaguru.java2.businesslogic.users.FindUserService;
 import lv.javaguru.java2.database.DAO.UserDAO;
+import lv.javaguru.java2.database.Entities.UserEntity;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.models.UserModel;
@@ -17,7 +18,7 @@ public class FindUserView implements View {
     private FindUserService findUserService;
 
     @Override
-    public Optional<UserModel> get(Object user) {
+    public Optional<UserEntity> get(Object user) {
         return findUserService.findUser(((UserModel) user));
     }
     @Override

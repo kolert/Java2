@@ -11,7 +11,7 @@ public interface UserDatabase {
 
     void add(UserEntity userModel);
 
-    Optional<UserModel> findUser(UserModel User);
+    Optional<UserEntity> findUser(UserModel User);
 
     void remove(UserModel userModel);
 
