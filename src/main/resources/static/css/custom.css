@@ -1,0 +1,13 @@
+.banner-area{
+    background-image: url("http://melarossa.by/images/java-site.jpg");
+    height: 245px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e4e4e4;
+}
+.container{
+    height: 100%;
+}
+.fullscreen{
+  height: 100%
+}
