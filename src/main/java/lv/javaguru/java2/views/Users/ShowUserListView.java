@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DAO.UserDAO;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

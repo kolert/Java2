@@ -1,6 +1,6 @@
 package lv.javaguru.java2.database.DAO;
 
-import lv.javaguru.java2.database.Entities.UserEntity;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.JDBCDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.models.UserModel;
@@ -17,7 +17,7 @@ public class UserDAO extends JDBCDatabase
                                  implements UserDatabase {
 
     @Override
-    public void add(UserEntity user) {
+    public void add(User user) {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -49,7 +49,7 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public Optional<UserEntity> findUser(UserModel user) {
+    public Optional<User> findUser(UserModel user) {
         Connection connection = null;
 
         try {
@@ -76,7 +76,7 @@ public class UserDAO extends JDBCDatabase
                 preparedStatement.setString(++i, user.getEmail());
             }
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserEntity userModel = null;
+            User userModel = null;
             if (resultSet.next()) {
                 userModel = mapUserModel(resultSet);
             }
@@ -109,8 +109,8 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public List<UserModel> getAllUsers() {
-        List<UserModel> users = new ArrayList<>();
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
         Connection connection = null;
         try {
             connection = getConnection();
@@ -119,8 +119,8 @@ public class UserDAO extends JDBCDatabase
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                UserEntity user = mapUserModel(resultSet);
-                users.add(user.toUserModel());
+                User user = mapUserModel(resultSet);
+                users.add(user);
             }
         } catch (Throwable e) {
             System.out.println("Exception while getting customer list UserDAOImpl.getAll()");
@@ -132,8 +132,8 @@ public class UserDAO extends JDBCDatabase
         return users;
     }
 
-    private UserEntity mapUserModel(ResultSet resultSet) throws SQLException{
-        UserEntity user = new UserEntity();
+    private User mapUserModel(ResultSet resultSet) throws SQLException{
+        User user = new User();
         user.setId(resultSet.getLong("id"));
         user.setLogin(resultSet.getString("login"));
         user.setPassword(resultSet.getString("password"));

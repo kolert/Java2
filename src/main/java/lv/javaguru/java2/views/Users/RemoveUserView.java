@@ -4,14 +4,14 @@ import lv.javaguru.java2.businesslogic.users.RemoveUserService;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RemoveUserView implements View {
-
+    @Autowired
     private RemoveUserService removeUserService;
 
-    public RemoveUserView(UserDatabase database) {
-        this.removeUserService = new RemoveUserService(database);
-    }
     @Override
     public void execute(Object login) throws InvalidDataException {
         removeUserService.removeUser((String)login);

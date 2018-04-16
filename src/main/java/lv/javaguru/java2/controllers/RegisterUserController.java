@@ -4,6 +4,7 @@ package lv.javaguru.java2.controllers;
 import lv.javaguru.java2.businesslogic.helper.Error;
 import lv.javaguru.java2.businesslogic.users.AddUserValidator;
 import lv.javaguru.java2.config.SpringAppConfig;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.Users.AddUserView;
 import org.springframework.context.ApplicationContext;
@@ -39,14 +40,14 @@ public class RegisterUserController {
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
 
-        UserModel userModel = new UserModel();
+        User userModel = new User();
         userModel.setLogin(login);
         userModel.setPassword(password);
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
-        userModel.setStatus("A");
-        userModel.setRole("U");
+        userModel.setStatus('A');
+        userModel.setRole('U');
 
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);

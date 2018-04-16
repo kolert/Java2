@@ -1,11 +1,16 @@
 package lv.javaguru.java2.controllers;
 
 
+import lv.javaguru.java2.config.SpringAppConfig;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.models.UserModel;
+import lv.javaguru.java2.views.Users.FindAllUserView;
 import lv.javaguru.java2.views.Users.FindUserView;
 import lv.javaguru.java2.views.View;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,17 +36,15 @@ public class LogInUserController {
     public String onPost(HttpServletRequest request, HttpSession session, Model model) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Optional<UserModel> user = null;
-        try {
-            View findUserView = new FindUserView();
-            UserModel tempUser = new UserModel();
-            tempUser.setLogin(login);
-            user =(Optional<UserModel>) findUserView.get(tempUser);
-        }catch(InvalidDataException e){
-            System.out.println(e.getMessage());
-        }
+        Optional<User> user = null;
+        User tempUser = new User();
+        tempUser.setLogin(login);
+        tempUser.setPassword(password);
+        ApplicationContext applicationContext
+                = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        user = applicationContext.getBean(FindUserView.class).get(tempUser);
         if (user.isPresent()) {
-            UserModel userModel = user.get();
+            User userModel = user.get();
             try {
                 if (PasswordFunctions.check(password, userModel.getPassword())){
                     request.getSession(true);

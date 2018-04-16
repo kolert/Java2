@@ -3,7 +3,9 @@ package lv.javaguru.java2.models;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import lv.javaguru.java2.businesslogic.helper.Error;
 import lv.javaguru.java2.businesslogic.responses.UserResponse;
+import lv.javaguru.java2.database.Entities.User;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class UserModel {

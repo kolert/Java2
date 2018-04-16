@@ -1,7 +1,6 @@
 package lv.javaguru.java2.database.Users;
 
-import lv.javaguru.java2.database.Entities.UserEntity;
-import lv.javaguru.java2.models.Product;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.models.UserModel;
 
 import java.util.ArrayList;
@@ -10,15 +9,15 @@ import java.util.Optional;
 
 public class UserInMemoryDatabase implements UserDatabase {
 
-    private static List<UserEntity> users = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
     @Override
-    public void add(UserEntity userModel) {
+    public void add(User userModel) {
         users.add(entityToModel(userModel));
     }
 
     @Override
-    public Optional<UserEntity> findUser(UserModel user) {
+    public Optional<User> findUser(UserModel user) {
 /*
         for (Product product : products) {
             if (product.getTitle().equals(title)) {
@@ -38,14 +37,14 @@ public class UserInMemoryDatabase implements UserDatabase {
     }
 
     @Override
-    public List<UserModel> getAllUsers() {
-        List<UserModel> allUsers = new ArrayList<>();
+    public List<User> getAllUsers() {
+        List<User> allUsers = new ArrayList<>();
         //allUsers.addAll(users);
         return allUsers;
     }
 
-    private UserEntity entityToModel(UserEntity userEntity){
-        UserEntity userModel = new UserEntity();
+    private User entityToModel(User userEntity){
+        User userModel = new User();
         userModel.setId(userEntity.getId());
         userModel.setLogin(userEntity.getLogin());
         userModel.setPassword(userEntity.getPassword());
