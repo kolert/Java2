@@ -74,21 +74,56 @@
               <p th:text="${error}"></p>
             </div>
         </div>
+    </div>
+    <div th:fragment="banner">
         <section class="banner-area relative" id="home" data-parallax="scroll">
             <div class="overlay-bg overlay"></div>
             <div class="container">
-                <div class="row fullscreen  d-flex align-items-center justify-content-end">
-                    <div class="banner-content col-lg-6 col-md-12">
-                        <h1>
-                            <span>Java students</span>
-                        </h1>
-                        <a href="#" class="primary-btn2 header-btn text-uppercase">Hire Us Now! You have no choice!</a>
-                    </div>
+                <div class="row fullscreen  d-flex align-items-right justify-content-end">
+                    <div class="banner-content col-lg-4 col-md-4">
+                    <h2>
+                        <span class="text-white">Java students</span>
+                    </h2>
+                    <a href="#" class="primary-btn2 header-btn text-uppercase">Hire Us Now! You have no choice!</a>
                 </div>
             </div>
         </section>
     </div>
     <div th:fragment="footer">
+        <footer class="footer-area section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6  col-md-12">
+                        <div class="single-footer-widget newsletter">
+                            <h6>Newsletter</h6>
+                            <p>You can trust us. we only send promo offers, not a single spam.</p>
+                            <div id="mc_embed_signup">
+                                <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+
+                                    <div class="form-group row" style="width: 100%">
+                                        <div class="col-lg-8 col-md-12">
+                                            <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                                            <div style="position: absolute; left: -5000px;">
+                                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-12">
+                                            <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
+                                        </div>
+                                    </div>
+                                    <div class="info"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer-bottom d-flex justify-content-between">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p class="col-lg-6 col-sm-12 footer-text m-0 text-white">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved"</p>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
