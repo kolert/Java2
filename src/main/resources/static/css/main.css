@@ -2599,7 +2599,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-area {
-  padding-top: 100px;
+  padding-top: 30px;
   background-color: #222222;
 }
 
@@ -2773,7 +2773,7 @@ h6 {
 }
 
 .footer-bottom {
-  padding-top: 80px;
+  padding-top: 25px;
 }
 
 .footer-text a, .footer-text i {

@@ -11,3 +11,13 @@
 .fullscreen{
   height: 100%
 }
+.home-title{
+  position: absolute;
+  top:25px;
+  left: 70%;
+}
+.home-button{
+  position: absolute;
+  top: 209px;
+  left: 36%;
+}

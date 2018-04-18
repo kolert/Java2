@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/jquery.DonutWidget.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img width="50" height="50" src="https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/Titcoin_Coin_Logo.png/250px-Titcoin_Coin_Logo.png" alt="">
+                <img width="50" height="50" src="https://spring.io/img/homepage/icon-spring-framework.svg" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -80,17 +80,22 @@
             <div class="overlay-bg overlay"></div>
             <div class="container">
                 <div class="row fullscreen  d-flex align-items-right justify-content-end">
-                    <div class="banner-content col-lg-4 col-md-4">
-                    <h2>
-                        <span class="text-white">Java students</span>
-                    </h2>
-                    <a href="#" class="primary-btn2 header-btn text-uppercase">Hire Us Now! You have no choice!</a>
+                    <div class="col-xs-12">
+                        <div class="home-title">
+                            <h2>
+                                <span class="text-white">Java students</span>
+                            </h2>
+                        </div>
+                        <div class="home-button">
+                            <a href="#" class="primary-btn2 header-btn text-uppercase">Hire Us Now! You have no choice!</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
     <div th:fragment="footer">
-        <footer class="footer-area section-gap">
+        <footer class="footer-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6  col-md-12">
@@ -109,7 +114,10 @@
                                         </div>
 
                                         <div class="col-lg-4 col-md-12">
-                                            <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
+                                            <button class="nw-btn primary-btn">Subscribe
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="fill: white;position: absolute;height: 30px;top: 5px;right: 16px;">
+                                                    <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="info"></div>
