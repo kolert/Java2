@@ -2,7 +2,7 @@ package lv.javaguru.java2.businesslogic.responses;
 
 import lv.javaguru.java2.businesslogic.helper.Error;
 
-public class UserResponse {
+public class Response {
     private boolean success;
     private Error error;
 
@@ -22,7 +22,7 @@ public class UserResponse {
         this.error = error;
     }
 
-    public UserResponse(boolean success, Error error){
+    public Response(boolean success, Error error){
         this.success = success;
         this.error = error;
     }

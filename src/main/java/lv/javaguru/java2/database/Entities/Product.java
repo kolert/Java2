@@ -17,6 +17,9 @@ public class Product {
     @Column(name="description", nullable = false)
     private String description;
 
+    @Column(name="img_url")
+    private String imgUrl;
+
     public Long getId() {
         return id;
     }
@@ -41,25 +44,9 @@ public class Product {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public String getImgUrl() { return imgUrl; }
 
-        Product product = (Product) o;
-
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
-        if (title != null ? !title.equals(product.title) : product.title != null) return false;
-        return description != null ? description.equals(product.description) : product.description == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
-    }
+    public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
 
     @Override
     public String toString() {
@@ -67,7 +54,7 @@ public class Product {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
-
 }

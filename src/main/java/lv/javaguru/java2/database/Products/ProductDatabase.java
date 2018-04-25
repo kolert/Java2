@@ -1,6 +1,7 @@
 package lv.javaguru.java2.database.Products;
 
-import lv.javaguru.java2.models.Product;
+
+import lv.javaguru.java2.database.Entities.Product;
 
 import java.util.List;
 import java.util.Optional;

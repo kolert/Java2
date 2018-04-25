@@ -24,8 +24,10 @@ public class AddProductView implements View {
         String title = sc.nextLine();
         System.out.print("Enter product description:");
         String description = sc.nextLine();
+        System.out.print("Enter product img url:");
+        String imgUrl = sc.nextLine();
 
-        addProductService.addProduct(title, description);
+        addProductService.addProduct(title, description, imgUrl);
 
         System.out.println("Add product to list execution end!");
         System.out.println();

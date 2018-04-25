@@ -1,30 +1,29 @@
 package lv.javaguru.java2.views.Products;
 
-import lv.javaguru.java2.exceptions.InvalidDataException;
-import lv.javaguru.java2.models.Product;
+import lv.javaguru.java2.businesslogic.Products.FindProductService;
+import lv.javaguru.java2.businesslogic.users.FindUserService;
+import lv.javaguru.java2.database.DAO.ProductDAO;
+import lv.javaguru.java2.database.Entities.Product;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.Products.ProductDatabase;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+@Component
 public class ShowProductListView implements View {
 
-    private ProductDatabase database;
+    @Autowired
+    private FindProductService findProductService;
 
-    public ShowProductListView(ProductDatabase database) {
-        this.database = database;
+    @Override
+    public List<Product> get(Object user) {
+        return findProductService.getAllProducts();
     }
-
     @Override
     public void execute(Object model) throws InvalidDataException {
-        System.out.println();
-        System.out.println("Print shopping list to console execution start!");
-        for (Product product : database.getAllProducts()) {
-            System.out.println(product.getTitle() + "[" + product.getDescription() + "]");
-        }
-        System.out.println("Print shopping list to console execution end!");
-        System.out.println();
-    }
-    @Override
-    public Object get(Object model) throws InvalidDataException{
-        return null;
     }
 }

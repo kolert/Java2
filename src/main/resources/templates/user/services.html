@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About Us</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: nav"></div>
+
+<!-- Start team Area -->
+<section class="team-area">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Services</h1>
+                    <p>Our available services</p>
+                </div>
+            </div>
+        </div>
+        <div class="product-list">
+            <!-- repeat for each from database product list -->
+
+            <div class="product" th:if="${products.empty}">
+                <div class="product-title">Place Holder</div>
+                <div class="product-img">
+                    <img src="https://spring.io/img/homepage/icon-spring-boot.svg"/>
+                </div>
+                <div class="product-description">
+                    <span>No products to offer</span>
+                </div>
+                <div class="product-button">
+                    <a href="#" class="primary-btn2 header-btn text-uppercase" disabled="disabled">SELECT</a>
+                </div>
+            </div>
+
+            <div class="product" th:each="product : ${products}">
+
+                <div class="product-title" th:text="${product.getTitle()}">placeholder</div>
+                <div class="product-img">
+                    <img th:src="${product.getImgUrl()}"/>
+                </div>
+                <div class="product-description" th:text="${product.getDescription()}">
+                    <span>placeholder</span>
+                </div>
+                <div class="product-button">
+                    <a href="#" class="primary-btn2 header-btn text-uppercase">SELECT</a>
+                </div>
+            </div>
+            <!-- repeat -->
+            <!--
+            <div class="product">
+                <div class="product-title">Embedded Tomcat</div>
+                <div class="product-img">
+                    <img src="http://fixstream.com/wp-content/uploads/2015/08/apache-tomcat-logo-square.jpg"/>
+                </div>
+                <div class="product-description">
+                    <span>Supplied from spring boot. Embedded TomCat 8.5.28</span>
+                </div>
+                <div class="product-button">
+                    <a href="#" class="primary-btn2 header-btn text-uppercase">SELECT</a>
+                </div>
+            </div>
+            <div class="product">
+                <div class="product-title">BootStrap</div>
+                <div class="product-img">
+                    <img src="https://i.pinimg.com/originals/30/8a/16/308a16d88daefd38eb305755fc4d9794.png"/>
+                </div>
+                <div class="product-description">
+                    <span>Bootstrap v4.0.0-beta (<a href="https://getbootstrap.com">https://getbootstrap.com</a>)</span>
+                </div>
+                <div class="product-button">
+                    <a href="#" class="primary-btn2 header-btn text-uppercase">SELECT</a>
+                </div>
+            </div>
+            <div class="product">
+                <div class="product-title">FontAwesome</div>
+                <div class="product-img">
+                    <img src="https://www.drupal.org/files/project-images/font_awesome_logo.png"/>
+                </div>
+                <div class="product-description">
+                    <span>Font Awesome v5.0.10 (<a href="https://fontawesome.com/">https://fontawesome.com/</a>)</span>
+                </div>
+                <div class="product-button">
+                    <a href="#" class="primary-btn2 header-btn text-uppercase">SELECT</a>
+                </div>
+            </div>
+            -->
+        </div>
+
+    </div>
+</section>
+<!-- End team Area -->
+
+<div th:replace="layouts/mainLayout :: footer"></div>
+</body>
+</html>

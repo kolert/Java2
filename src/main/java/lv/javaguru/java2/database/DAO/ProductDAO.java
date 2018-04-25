@@ -1,8 +1,8 @@
 package lv.javaguru.java2.database.DAO;
 
+import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.database.JDBCDatabase;
 import lv.javaguru.java2.database.Products.ProductDatabase;
-import lv.javaguru.java2.models.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,7 +1,7 @@
 package lv.javaguru.java2.businesslogic.Products;
 
+import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.exceptions.InvalidDataException;
-import lv.javaguru.java2.models.Product;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 
 public class AddProductService {
@@ -13,10 +13,12 @@ public class AddProductService {
     }
 
     public void addProduct(String title,
-                           String description) throws InvalidDataException {
+                           String description,
+                           String imgUrl) throws InvalidDataException {
         Product product = new Product();
         product.setTitle(title);
         product.setDescription(description);
+        product.setImgUrl(imgUrl);
         productDatabase.add(product);
     }
 

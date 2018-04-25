@@ -26,13 +26,13 @@ public class ShoppingListApplication {
 
         View addProductView = new AddProductView(database);
         View removeProductView = new RemoveProductView(database);
-        View showProductView = new ShowProductListView(database);
+//        View showProductView = new ShowProductListView(database);
         View programExitView = new ProgramExitView();
 
         Map<Integer, View> actionMap = new HashMap<>();
         actionMap.put(1, addProductView);
         actionMap.put(2, removeProductView);
-        actionMap.put(3, showProductView);
+//        actionMap.put(3, showProductView);
         actionMap.put(4, programExitView);
 
         while (true) {
