@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Supplies</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: nav"></div>
+
+<!-- Start team Area -->
+<section class="team-area section-gap" id="team">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">WHAT WE OFFER?</h1>
+                    <p>Check out our new creditation offers</p>
+                </div>
+            </div>
+        </div>
+                <div class="col-xs-12">
+                    <div class="row d-flex justify-content-center">
+                        <a href="#" class="primary-btn2 header-btn text-uppercase">Standart Package</a>
+                    </div>
+                </div>
+            </div>
+</section>
+<!-- End team Area -->
+
+<div th:replace="layouts/mainLayout :: footer"></div>
+</body>
+</html>
