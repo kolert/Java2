@@ -1,5 +1,6 @@
 package lv.javaguru.java2.config;
 
+import lv.javaguru.java2.filters.DirectLinkFIlter;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.servlet.Filter;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -24,12 +26,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class SpringAppConfig {
 
-    @Bean(name="propertySourcesPlaceholderConfigurer")
+    @Bean(name = "propertySourcesPlaceholderConfigurer")
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(name="dataSource")
+    @Bean(name = "dataSource")
     public static DataSource dataSource(
             @Value("${jdbc.url}") String jdbcUrl,
             @Value("${driverClass}") String driverClass,
@@ -43,7 +45,7 @@ public class SpringAppConfig {
         return ds;
     }
 
-    @Bean(name="hibernateProperties")
+    @Bean(name = "hibernateProperties")
     public Properties hibernateProperties(
             @Value("${hibernate.dialect}") String dialect,
             @Value("${hibernate.show_sql}") boolean showSql,
@@ -59,7 +61,7 @@ public class SpringAppConfig {
         return properties;
     }
 
-    @Bean(name="sessionFactorys")
+    @Bean(name = "sessionFactorys")
     public SessionFactory sessionFactory(DataSource dataSource,
                                          @Value("${hibernate.packagesToScan}") String packagesToScan,
                                          @Qualifier("hibernateProperties") Properties properties) throws Exception {
@@ -72,8 +74,28 @@ public class SpringAppConfig {
         return sessionFactoryBean.getObject();
     }
 
-    @Bean(name="transactionManager")
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
+    }
+
+    @Bean
+    public FilterRegistrationBean someFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(someFilter());
+        registration.addUrlPatterns("/*");
+        registration.addInitParameter("paramName", "paramValue");
+        registration.setName("someFilter");
+        registration.setOrder(1);
+        return registration;
+    }
+
+    public Filter someFilter() {
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        return new DirectLinkFIlter();
     }
 }
