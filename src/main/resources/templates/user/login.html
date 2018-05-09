@@ -6,6 +6,7 @@
 </head>
 <body>
     <div th:replace="layouts/mainLayout :: nav"></div>
+    <div th:replace="layouts/mainLayout :: sidebar"></div>
 
     <div class="container">
         <form class="form-horizontal" method="POST">
@@ -17,7 +18,7 @@
                 <div class="control-group">
                     <label class="control-label" for="login">E-mail</label>
                     <div class="controls">
-                        <input type="text" id="login" name="login" placeholder="" class="input-xlarge">
+                        <input type="text" id="login" name="login" placeholder="" class="input-xlarge" autofocus>
                     </div>
                 </div>
 

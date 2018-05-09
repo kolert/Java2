@@ -21,3 +21,4 @@ CREATE TABLE `java2`.`users` (
 /* CREATING ADMIN USER */
 INSERT INTO java2.users(`id`,`name`,`surname`,`login`,`password`,`created`,`email`,`role`,`status`)
 VALUES ('1','SUPER','ADMIN','sa','pugUOEJeVo53HZWYswYNKp8gx66AHVW6IfDXRMPc9wY=',NOW(),'info@example.com','A','A');
+

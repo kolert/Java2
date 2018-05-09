@@ -49,7 +49,10 @@ public class LogInUserController {
                 if (PasswordFunctions.check(password, userModel.getPassword())){
                     request.getSession(true);
                     session.setAttribute("auth", true);
-                    session.setAttribute("userName", userModel.getName());
+                    session.setAttribute("user", userModel);
+                    if(userModel.getRole().equals("A")){
+                        session.setAttribute("sideBar","active");
+                    }
                     return "redirect:/userList";
                 }
             }catch (Exception e){

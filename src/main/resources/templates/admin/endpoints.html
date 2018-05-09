@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>EndPoints</title>
+  <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: nav"></div>
+
+<div class="container">
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>path</th>
+    <th>methods</th>
+    <th>consumes</th>
+    <th>produces</th>
+    <th>params</th>
+    <th>headers</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr th:each="endPoint : ${endPoints}">
+      <td th:text="${endPoint.patternsCondition}"></tdth:text></td>
+      <td th:text="${endPoint.methodsCondition}"></td>
+      <td th:text="${endPoint.consumesCondition}"></td>
+      <td th:text="${endPoint.producesCondition}"></td>
+      <td th:text="${endPoint.paramsCondition}"></td>
+      <td th:text="${endPoint.headersCondition}"></td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

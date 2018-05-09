@@ -1,45 +1,31 @@
 package lv.javaguru.java2.filters;
 
-import lv.javaguru.java2.config.SpringAppConfig;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lv.javaguru.java2.database.Entities.User;
+import lv.javaguru.java2.models.UserModel;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Component
 public class DirectLinkFIlter implements Filter {
     private static Logger logger = Logger.getLogger(DirectLinkFIlter.class.getName());
 
-    private ApplicationContext applicationContext;
     private List<String> endpointList;
-
-    @Autowired
-    private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     public DirectLinkFIlter() {
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-//        ApplicationContext applicationContext
-//                = new AnnotationConfigApplicationContext(ContextRefreshedEvent.class);
-//        Map endpointMap = applicationContext.getBean(RequestMappingHandlerMapping.class).getHandlerMethods();
-//        for(Object key : endpointMap.keySet()){
-//            System.out.println(key);
-//        }
     }
 
     @Override
@@ -52,18 +38,38 @@ public class DirectLinkFIlter implements Filter {
 
         String contextURI = req.getServletPath();
 
-        if (false){//requestMappingHandlerMapping.getHandlerMethods().keySet().contains(contextURI)){
-            ServletContext context = req.getServletContext();
-            RequestDispatcher requestDispatcher = context.getRequestDispatcher(contextURI);
-            requestDispatcher.forward(req, resp);
+        ServletContext context = req.getServletContext();
+        HttpSession session = req.getSession();
+        if ("/userList".contains(contextURI)){
+            RequestDispatcher requestDispatcher = null;
+            if(session.getAttribute("auth")==null || !session.getAttribute("auth").equals(true)) {
+                requestDispatcher = context.getRequestDispatcher("/");
+                requestDispatcher.forward(req,resp);
+            }
         }
-        else {
-            filterChain.doFilter(request,response);
+        if("/endPoints".contains(contextURI)){
+            RequestDispatcher requestDispatcher = null;
+            if(session.getAttribute("auth")==null || !session.getAttribute("auth").equals(true) ||
+                    !((User)session.getAttribute("user")).getRole().equals("A")) {
+                requestDispatcher = context.getRequestDispatcher("/");
+                requestDispatcher.forward(req,resp);
+            }
         }
+
+
+        filterChain.doFilter(request,response);
     }
 
     @Override
     public void destroy() {
 
+    }
+
+    public List<String> getEndpointList() {
+        return endpointList;
+    }
+
+    public void setEndpointList(List<String> endpointList) {
+        this.endpointList = endpointList;
     }
 }

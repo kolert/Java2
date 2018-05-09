@@ -17,7 +17,8 @@ public class LogOutUserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String home(HttpServletRequest request,HttpSession session, Model model) {
         session.removeAttribute("auth");
-        session.removeAttribute("userName");
+        session.removeAttribute("user");
+        session.removeAttribute("sideBar");
         return "redirect:/login";
     }
 }

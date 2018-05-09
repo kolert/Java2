@@ -20,50 +20,61 @@
 
 <body>
 <header class="default-header">
-    <div class="nav-container" th:fragment="nav">
-        <nav class="navbar navbar-expand-lg  navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img width="50" height="50" src="https://spring.io/img/homepage/icon-spring-framework.svg" alt="">
-                </a>
+        <div class="nav-container" th:fragment="nav">
+            <nav class="navbar navbar-expand-lg  navbar-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">
+                        <img width="50" height="50" src="https://spring.io/img/homepage/icon-spring-framework.svg" alt="">
+                    </a>
 
-                <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/supplies">Supplies</a></li>
-                        <li><a href="/services">Service</a></li>
-                        <li><a href="/aboutus">About Us</a></li>
-                        <li th:if="${session.auth == true}"><a href="/userList">User List</a></li>
-                        <li>
-                            <!--form class="navbar-form navbar-right" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" height="30" placeholder="Search">
+                    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/supplies">Supplies</a></li>
+                            <li><a href="/services">Service</a></li>
+                            <li><a href="/aboutus">About Us</a></li>
+                            <li th:if="${session.auth == true}"><a href="/userList">User List</a></li>
+                            <li>
+                                <!--form class="navbar-form navbar-right" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" height="30" placeholder="Search">
+                                    </div>
+                                    <div style="width: 50px;position: relative;float: right;">
+                                        <button type="submit" class="btn btn-default">
+                                            <img src="https://cdn.onlinewebfonts.com/svg/img_467459.png" alt="Search" width="50%" height="50%"/>
+                                        </button>
+                                    </div>
+                                </form-->
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    Pages
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="generic.html">Generic</a>
+                                    <a class="dropdown-item" href="elements.html">Elements</a>
                                 </div>
-                                <div style="width: 50px;position: relative;float: right;">
-                                    <button type="submit" class="btn btn-default">
-                                        <img src="https://cdn.onlinewebfonts.com/svg/img_467459.png" alt="Search" width="50%" height="50%"/>
-                                    </button>
-                                </div>
-                            </form-->
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Pages
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="generic.html">Generic</a>
-                                <a class="dropdown-item" href="elements.html">Elements</a>
-                            </div>
-                        </li>
-                        <li th:if="${session.auth == null || session.auth != true}"><a href="/registration">Register</a></li>
-                        <li th:if="${session.auth == null || session.auth != true}"><a href="/login">Log In</a></li>
-                        <li><a href="#" th:text="${session.userName}">User</a></li>
-                        <li th:if="${session.auth == true}"><a href="/logout">Log Out</a></li>
-                    </ul>
+                            </li>
+                            <li th:if="${session.auth == null || session.auth != true}"><a href="/registration">Register</a></li>
+                            <li th:if="${session.auth == null || session.auth != true}"><a href="/login">Log In</a></li>
+                            <li th:if="${session.auth == true}"><a href="#" th:text="${session.user.name}">User</a></li>
+                            <li th:if="${session.auth == true}"><a href="/logout">Log Out</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
+        <div class="sidebar" th:if="${session.auth != null && session.auth == true && session.user.role == 'A'}"  th:fragment="sidebar">
+            <ul>
+                <li><h3>Admin Controlls</h3></li>
+                <li><a href="/endPoints">EndPoints</a></li>
+            </ul>
+            <script>
+                document.onload = function(){
+                    $('body > .container').style.padding="0 20px 0 220px"
+                };
+            </script>
+        </div>
 </header>
     <div th:fragment="error">
         <div class="alert alert-danger" th:if="${error != null}">
