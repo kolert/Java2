@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Service</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: sidebar"></div>
+<div th:replace="layouts/mainLayout :: nav"></div>
+
+<div class="container">
+    <form class="form-horizontal" action='/addservice' method="POST">
+        <fieldset>
+            <div id="legend">
+                <legend class="">Add new service</legend>
+            </div>
+            <div class="control-group">
+                <label class="control-label"  for="title">Title</label>
+                <div class="controls">
+                    <input type="text" id="title" name="title" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">Description</label>
+                <div class="controls">
+                    <input type="text" id="description" name="description" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"  for="imgUrl">Image</label>
+                <div class="controls">
+                    <input type="text" id="imgUrl" name="imgUrl" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="layouts/mainLayout :: footer"></div>
+</body>
+</html>

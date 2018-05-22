@@ -91,11 +91,6 @@ public class SpringAppConfig {
     }
 
     public Filter someFilter() {
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
         return new DirectLinkFIlter();
     }
 }
