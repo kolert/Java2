@@ -14,9 +14,11 @@ class UserORM extends ORMRepository
         implements UserRepository {
 
     @Override
-    public void remove(UserModel userModel){
+    public void remove(User userModel){
         session().delete(userModel);
     }
+    @Override
+    public void update(User userModel) { session().update(userModel);}
     @Override
     public Optional<User> findUser(User userModel){
         System.out.println("findUsers");

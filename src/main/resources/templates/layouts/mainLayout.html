@@ -51,7 +51,7 @@
                                     Pages
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="generic.html">Generic</a>
+                                    <a th:if="${session.auth == true}" href="/passwordChange">Change password</a>
                                     <a class="dropdown-item" href="elements.html">Elements</a>
                                 </div>
                             </li>
@@ -68,6 +68,7 @@
             <ul>
                 <li><h3>Admin Controlls</h3></li>
                 <li><a href="/endPoints">EndPoints</a></li>
+                <li><a href="/addUser">Add User</a></li>
             </ul>
             <script>
                 document.onload = function(){
@@ -109,7 +110,7 @@
     <footer class="footer-area" th:fragment="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6  col-md-12">
+                <div class="col-xs-6  col-md-12">
                     <div class="single-footer-widget newsletter">
                         <h6>Newsletter</h6>
                         <p>You can trust us. we only send promo offers, not a single spam.</p>
@@ -117,14 +118,14 @@
                             <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
 
                                 <div class="form-group row" style="width: 100%">
-                                    <div class="col-lg-8 col-md-12">
+                                    <div class="col-xs-8 col-md-12">
                                         <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
                                         <div style="position: absolute; left: -5000px;">
                                             <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-12">
+                                    <div class="col-xs-4 col-md-12">
                                         <button class="nw-btn primary-btn">Subscribe
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="fill: white;position: absolute;height: 30px;top: 5px;right: 16px;">
                                                 <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
@@ -139,7 +140,7 @@
             </div>
             <div class="row footer-bottom d-flex justify-content-between">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                <p class="col-lg-6 col-sm-12 footer-text m-0 text-white">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved"</p>
+                <p class="col-xs-6 col-sm-12 footer-text m-0 text-white">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved"</p>
             </div>
         </div>
     </footer>

@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Component
 public class DirectLinkFIlter implements Filter {
     private static Logger logger = Logger.getLogger(DirectLinkFIlter.class.getName());
-
+    private static String[] restrictedUrls = new String[]{"/userList",
+            "/endPoints","/addUser"};
     private List<String> endpointList;
 
     public DirectLinkFIlter() {
@@ -40,7 +42,7 @@ public class DirectLinkFIlter implements Filter {
 
         ServletContext context = req.getServletContext();
         HttpSession session = req.getSession();
-        if ("/userList".contains(contextURI)){
+        if (Arrays.asList(restrictedUrls).contains(contextURI)){
             RequestDispatcher requestDispatcher = null;
             if(session.getAttribute("auth")==null || !session.getAttribute("auth").equals(true)) {
                 requestDispatcher = context.getRequestDispatcher("/");

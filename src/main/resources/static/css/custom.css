@@ -23,9 +23,19 @@
 }
 div.container {
     max-width: 100%;
+    padding: 0;
 }
-.sidebar + .container {
-    padding-left: 220px;
+.navbar-brand {
+    padding-top: 10px;
+}
+.sidebar ~ div, .sidebar ~ footer {
+    padding-left: 200px;
+}
+.footer-area > .container {
+    padding: 5px 20px;
+}
+.container > .form-horizontal > fieldset > .control-group {
+    margin: 0 20%;
 }
 .product-title {
   width: 100%;
@@ -111,7 +121,7 @@ body{
     height: 100%;
     width: 200px;
     position: absolute;
-    background: white;
+    background: #363535;
     border-right: solid 1px #878686;
 }
 .moveRight{
@@ -128,5 +138,10 @@ body{
     top: 10px;
     width: 100%;
     height: 100%;
-    padding: 12px 70px 9px 65px;
+    padding: 12px 0;
+    color: white;
+    text-transform: uppercase;
+}
+.sidebar ul li h3 {
+    color: white;
 }

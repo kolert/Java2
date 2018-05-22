@@ -1,4 +1,4 @@
-package lv.javaguru.java2.controllers;
+package lv.javaguru.java2.controllers.user;
 
 
 import org.springframework.context.annotation.Scope;
@@ -12,14 +12,11 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @Scope("session")
-public class LogOutUserController {
+public class AboutUsController {
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String home(HttpServletRequest request,HttpSession session, Model model) {
-        session.removeAttribute("auth");
-        session.removeAttribute("user");
-        session.removeAttribute("sideBar");
-        return "redirect:/login";
+    @RequestMapping(value = "/aboutus", method = RequestMethod.GET)
+    public String home(HttpServletRequest request, HttpSession session, Model model) {
+        return "user/aboutus";
     }
 }
 

@@ -9,48 +9,27 @@
 <div th:replace="layouts/mainLayout :: nav"></div>
 
 <div class="container">
-    <form class="form-horizontal" action='/registration' method="POST">
+    <form class="form-horizontal" action='/addUser' method="POST">
         <fieldset>
             <div id="legend">
-                <legend class="">Registration</legend>
+                <legend class="">Registration new user</legend>
             </div>
             <div class="control-group">
                 <label class="control-label"  for="login">Username</label>
                 <div class="controls">
                     <input type="text" id="login" name="login" placeholder="" class="input-xlarge">
-                    <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                 </div>
             </div>
-
             <div class="control-group">
                 <label class="control-label" for="email">E-mail</label>
                 <div class="controls">
                     <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-                    <p class="help-block">Please provide your E-mail</p>
                 </div>
             </div>
-
-            <div class="control-group">
-                <label class="control-label" for="password">Password</label>
-                <div class="controls">
-                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                    <p class="help-block">Password should be at least 4 characters</p>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label"  for="repPassword">Password (Confirm)</label>
-                <div class="controls">
-                    <input type="password" id="repPassword" name="repPassword" placeholder="" class="input-xlarge">
-                    <p class="help-block">Please confirm password</p>
-                </div>
-            </div>
-
             <div class="control-group">
                 <label class="control-label"  for="name">Name</label>
                 <div class="controls">
                     <input type="text" id="name" name="name" placeholder="" class="input-xlarge">
-                    <p class="help-block">Name can contain any letters or numbers, without spaces</p>
                 </div>
             </div>
 
@@ -58,12 +37,29 @@
                 <label class="control-label"  for="surname">Surname</label>
                 <div class="controls">
                     <input type="text" id="surname" name="surname" placeholder="" class="input-xlarge">
-                    <p class="help-block">Surname can contain any letters or numbers, without spaces</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <lable class="control-label" for="status">Status</lable>
+                <div class="controls">
+                    <select id="status" name="status">
+                        <option value="A">Active</option>
+                        <option value="D">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <lable class="control-label" for="role">Role</lable>
+                <div class="controls">
+                    <select id="role" name="role">
+                        <option value="U">User</option>
+                        <option value="A">Admin</option>
+                    </select>
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button class="btn btn-info">Submit</button>
+                    <button class="btn btn-info">Add User</button>
                 </div>
             </div>
         </fieldset>

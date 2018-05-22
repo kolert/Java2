@@ -9,7 +9,8 @@ import java.util.Optional;
 public interface UserRepository {
 
     void save(User user);
-    void remove(UserModel userModel);
+    void update(User userModel);
+    void remove(User userModel);
     List<User> getAllUsers();
     Optional<User> findUser(User userModel);
 }

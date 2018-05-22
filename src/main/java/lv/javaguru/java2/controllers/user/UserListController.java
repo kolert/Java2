@@ -1,4 +1,4 @@
-package lv.javaguru.java2.controllers;
+package lv.javaguru.java2.controllers.user;
 
 import lv.javaguru.java2.businesslogic.users.FindUserService;
 import lv.javaguru.java2.config.SpringAppConfig;

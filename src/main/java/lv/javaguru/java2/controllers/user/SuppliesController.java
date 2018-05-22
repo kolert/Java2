@@ -1,4 +1,4 @@
-package lv.javaguru.java2.controllers;
+package lv.javaguru.java2.controllers.user;
 
 
 import org.springframework.context.annotation.Scope;

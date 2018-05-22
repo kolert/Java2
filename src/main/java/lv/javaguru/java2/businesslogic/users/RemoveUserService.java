@@ -19,8 +19,8 @@ public class RemoveUserService {
         remUser.setLogin(login);
         Optional<User> foundUser = userORMDatabase.findUser(remUser);
         if (foundUser.isPresent()) {
-            UserModel user = foundUser.get().toUserModel();
-            userORMDatabase.remove(user);
+            //UserModel user = foundUser.get().toUserModel();
+            userORMDatabase.remove(foundUser.get());
             return true;
         } else {
             throw new InvalidDataException("No User foudn with login "+login);

@@ -1,4 +1,4 @@
-package lv.javaguru.java2.controllers;
+package lv.javaguru.java2.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
