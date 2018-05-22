@@ -14,10 +14,12 @@
             <thead>
             <tr>
                 <td>Login</td>
-                <td>Password</td>
+                <td th:if="${session.user.role == 'A'}">Password</td>
                 <td>Name</td>
                 <td>Surname</td>
                 <td>Email</td>
+                <td th:if="${session.user.role == 'A'}">Role</td>
+                <td th:if="${session.user.role == 'A'}">Status</td>
             </tr>
             </thead>
             <tbody>
@@ -26,10 +28,12 @@
             </tr>
             <tr th:each="user : ${users}">
                 <td th:text="${user.getLogin()}"></td>
-                <td th:text="${user.getPassword()}"></td>
+                <td th:if="${session.user.role == 'A'}" th:text="${user.getPassword()}"></td>
                 <td th:text="${user.getName()}"></td>
                 <td th:text="${user.getSurname()}"></td>
                 <td th:text="${user.getEmail()}"></td>
+                <td th:if="${session.user.role == 'A'}" th:text="${user.getRole()}"></td>
+                <td th:if="${session.user.role == 'A'}" th:text="${user.getStatus()}"></td>
             </tr>
             </tbody>
         </table>
