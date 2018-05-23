@@ -20,26 +20,25 @@ public class UpdateUserService {
     @Autowired
     private UserRepository userORMDatabase;
     @Transactional
-    public Response update(Object model) throws InvalidDataException  {
+    public void update(Object model) throws InvalidDataException  {
         User userModel = (User) model;
-        java.util.Date utilDate = new java.util.Date();
-        userModel.setCreated(new Timestamp(utilDate.getTime()));
-        System.out.println("started register");
+        System.out.println("started update");
         System.out.println(model.toString());
         Optional<User> foundUser = userORMDatabase.findUser(userModel);
-
         if (foundUser.isPresent()) {
-            Response ret = userModel.toUserModel().validate();
+            String pass = userModel.getPassword();
+            userModel = foundUser.get();
+            //Response ret = userModel.toUserModel().validate();
             try {
-                userModel.setPassword(PasswordFunctions.getSaltedHash(userModel.getPassword()));
+                userModel.setPassword(PasswordFunctions.getSaltedHash(pass));
                 userORMDatabase.update(userModel);
-                System.out.println("User Inserted");
+                System.out.println("User updated");
             }catch(Exception e){
                 e.printStackTrace();
             }
-            return ret;
+            //return ret;
         } else {
-            throw new InvalidDataException("User already exists!");
+            throw new InvalidDataException("User does not exists!");
         }
     }
 

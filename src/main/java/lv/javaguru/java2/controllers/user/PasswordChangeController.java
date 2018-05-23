@@ -60,6 +60,7 @@ public class PasswordChangeController {
             User userModel = user.get();
             try {
                 if (PasswordFunctions.check(oldPassword, userModel.getPassword())){
+                    userModel.setPassword(password);
                     applicationContext.getBean(UpdateUserView.class).execute(userModel);
                 }else{
                     success = false;

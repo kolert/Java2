@@ -37,6 +37,12 @@ div.container {
 .container > .form-horizontal > fieldset > .control-group {
     margin: 0 20%;
 }
+.product{
+    width: 200px;
+    margin-left: 50px;
+    border: solid 2px gray;
+    height: 333px;
+}
 .product-title {
   width: 100%;
   text-align: center;
@@ -72,7 +78,6 @@ div.container {
 }
 .product-list {
     height: 350px;
-    overflow-x: scroll;
     display: flex;
 }
 div.navbar{
