@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.orm;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.repositorys.UserRepository;
 import lv.javaguru.java2.models.UserModel;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -23,10 +24,12 @@ class UserORM extends ORMRepository
     public Optional<User> findUser(User userModel){
         System.out.println("findUsers");
         System.out.println(userModel.getLogin());
-        String login = userModel.getLogin();
-        User user = (User) session().createCriteria(User.class)
-                .add(Restrictions.eq("login",login))
-                .uniqueResult();
+        Criteria hql = session().createCriteria(User.class);
+        if(userModel.getId()!=null&&userModel.getId()!=0)
+            hql.add(Restrictions.eq("id",userModel.getId()));
+        if(userModel.getLogin()!=null&&!userModel.getLogin().isEmpty())
+            hql.add(Restrictions.eq("login",userModel.getLogin()));
+        User user =(User) hql.uniqueResult();
         return Optional.ofNullable(user);
 
     }
