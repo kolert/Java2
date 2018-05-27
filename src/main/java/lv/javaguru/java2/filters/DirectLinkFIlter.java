@@ -1,8 +1,6 @@
 package lv.javaguru.java2.filters;
 
 import lv.javaguru.java2.database.Entities.User;
-import lv.javaguru.java2.models.UserModel;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;

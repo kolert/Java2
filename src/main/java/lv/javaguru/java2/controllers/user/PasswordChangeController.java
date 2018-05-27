@@ -1,13 +1,9 @@
 package lv.javaguru.java2.controllers.user;
 
 
-import lv.javaguru.java2.businesslogic.helper.Error;
-import lv.javaguru.java2.businesslogic.users.AddUserValidator;
 import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.functions.PasswordFunctions;
-import lv.javaguru.java2.models.UserModel;
-import lv.javaguru.java2.views.Users.AddUserView;
 import lv.javaguru.java2.views.Users.FindUserView;
 import lv.javaguru.java2.views.Users.UpdateUserView;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +18,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Optional;
 
 @Scope("session")

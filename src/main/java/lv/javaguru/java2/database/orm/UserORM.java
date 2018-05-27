@@ -2,7 +2,6 @@ package lv.javaguru.java2.database.orm;
 
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.repositorys.UserRepository;
-import lv.javaguru.java2.models.UserModel;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;

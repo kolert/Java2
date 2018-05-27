@@ -1,6 +1,7 @@
 package lv.javaguru.java2.database.Entities;
 
-import lv.javaguru.java2.models.UserModel;
+import lv.javaguru.java2.businesslogic.helper.Error;
+import lv.javaguru.java2.businesslogic.responses.Response;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -102,7 +103,7 @@ public class User {
         this.status = status;
     }
 
-    public void setModel(UserModel userModel){
+    public void setModel(User userModel){
         setEmail(userModel.getEmail());
         setName(userModel.getName());
         java.util.Date utilDate = new java.util.Date();
@@ -110,19 +111,24 @@ public class User {
         setLogin(userModel.getLogin());
         setPassword(userModel.getPassword());
         setRole(userModel.getRole().charAt(0));
-        setStatus(userModel.getStatus().charAt(0));
+        setStatus(userModel.getStatus());
         setSurname(userModel.getSurname());
     }
-    public UserModel toUserModel(){
-        UserModel user = new UserModel();
-        user.setId(getId());
-        user.setEmail(getEmail());
-        user.setCreated(getCreated());
-        user.setLogin(getLogin());
-        user.setPassword(getPassword());
-        user.setRole(""+getRole());
-        user.setStatus(""+getStatus());
-        user.setSurname(getSurname());
-        return user;
+
+    public Response validate(){
+        System.out.println(toString());
+        if(this.login == null || this.login.isEmpty()){
+            return new Response(false, new Error("Login","Can not be empty!"));
+        }else if(this.email == null || this.email.isEmpty()){
+            return new Response(false,new Error("Email","Can not be empty!"));
+        }else if(this.name == null || this.name.isEmpty()){
+            return new Response(false,new Error("Name","Can not be empty!"));
+        }else if(this.surname == null || this.surname.isEmpty()){
+            return new Response(false,new Error("Surname","Can not be empty!"));
+//        }else if(this.password == null || this.password.isEmpty()){
+//            return new Response(false,new Error("Password","Can not be empty!"));
+        }else {
+            return new Response(true,null);
+        }
     }
 }

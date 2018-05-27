@@ -1,10 +1,8 @@
 package lv.javaguru.java2.businesslogic.users;
 
 import lv.javaguru.java2.database.Entities.User;
-import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.database.repositorys.UserRepository;
 import lv.javaguru.java2.exceptions.InvalidDataException;
-import lv.javaguru.java2.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

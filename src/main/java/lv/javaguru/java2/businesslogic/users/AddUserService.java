@@ -29,7 +29,7 @@ public class AddUserService {
         Optional<User> foundUser = userORMDatabase.findUser(userModel);
 
         if (!foundUser.isPresent()) {
-            Response ret = userModel.toUserModel().validate();
+            Response ret = userModel.validate();
             try {
                 userModel.setPassword(PasswordFunctions.getSaltedHash(userModel.getPassword()));
                 userORMDatabase.save(userModel);

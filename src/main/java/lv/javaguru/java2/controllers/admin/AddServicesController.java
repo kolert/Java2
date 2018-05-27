@@ -5,6 +5,9 @@ import lv.javaguru.java2.businesslogic.helper.Error;
 import lv.javaguru.java2.businesslogic.users.AddUserValidator;
 import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.Product;
+import lv.javaguru.java2.exceptions.InvalidDataException;
+import lv.javaguru.java2.views.Products.AddProductView;
+import lv.javaguru.java2.views.Products.FindProductView;
 import lv.javaguru.java2.views.Users.AddUserView;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -29,7 +32,7 @@ public class AddServicesController {
         return "admin/addservice";
     }
     @RequestMapping(value = "/addservice", method = RequestMethod.POST)
-    public RedirectView addServiceView(HttpServletRequest request, HttpSession session ,RedirectAttributes redirectAttributes) {
+    public RedirectView addServiceView(HttpServletRequest request, HttpSession session ,RedirectAttributes redirectAttributes) throws InvalidDataException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String imgUrl = request.getParameter("imgUrl");
@@ -42,8 +45,13 @@ public class AddServicesController {
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
 
+        ApplicationContext applicationContext
+                = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        applicationContext.getBean(AddProductView.class).execute(product);
+
         //List<Error> validatorRespose = AddUserValidator.validate(product.getTitle(),product.getDescription(),product.getImgUrl());
 
+        redirectView.setUrl("/services");
         return redirectView;
     }
 }

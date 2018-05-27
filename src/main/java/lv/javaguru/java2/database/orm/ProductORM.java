@@ -4,7 +4,6 @@ import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.repositorys.ProductRepository;
 import lv.javaguru.java2.database.repositorys.UserRepository;
-import lv.javaguru.java2.models.UserModel;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 

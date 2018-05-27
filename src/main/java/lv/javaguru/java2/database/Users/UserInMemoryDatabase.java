@@ -1,7 +1,6 @@
 package lv.javaguru.java2.database.Users;
 
 import lv.javaguru.java2.database.Entities.User;
-import lv.javaguru.java2.models.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class UserInMemoryDatabase implements UserDatabase {
     }
 
     @Override
-    public Optional<User> findUser(UserModel user) {
+    public Optional<User> findUser(User user) {
 /*
         for (Product product : products) {
             if (product.getTitle().equals(title)) {
@@ -32,7 +31,7 @@ public class UserInMemoryDatabase implements UserDatabase {
     }
 
     @Override
-    public void remove(UserModel userModel) {
+    public void remove(User userModel) {
         users.remove(userModel);
     }
 

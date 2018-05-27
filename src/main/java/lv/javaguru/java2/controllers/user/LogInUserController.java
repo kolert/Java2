@@ -3,12 +3,8 @@ package lv.javaguru.java2.controllers.user;
 
 import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.User;
-import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
-import lv.javaguru.java2.models.UserModel;
-import lv.javaguru.java2.views.Users.FindAllUserView;
 import lv.javaguru.java2.views.Users.FindUserView;
-import lv.javaguru.java2.views.View;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

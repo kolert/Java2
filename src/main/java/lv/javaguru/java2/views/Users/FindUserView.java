@@ -3,7 +3,6 @@ package lv.javaguru.java2.views.Users;
 import lv.javaguru.java2.businesslogic.users.FindUserService;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.exceptions.InvalidDataException;
-import lv.javaguru.java2.models.UserModel;
 import lv.javaguru.java2.views.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

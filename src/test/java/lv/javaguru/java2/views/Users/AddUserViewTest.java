@@ -2,9 +2,9 @@ package lv.javaguru.java2.views.Users;
 
 import lv.javaguru.java2.businesslogic.responses.Response;
 import lv.javaguru.java2.businesslogic.users.AddUserService;
+import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.Users.UserDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
-import lv.javaguru.java2.models.UserModel;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -21,7 +21,7 @@ public class AddUserViewTest {
 
     @Test
     public void shoudlBeErrorWhenLoginEmpty() {
-        UserModel user = Mockito.mock(UserModel.class);
+        User user = Mockito.mock(User.class);
         user.setName("test");
         user.setSurname("test");
         user.setPassword("testPass");

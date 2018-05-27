@@ -3,7 +3,6 @@ package lv.javaguru.java2.database.DAO;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.JDBCDatabase;
 import lv.javaguru.java2.database.Users.UserDatabase;
-import lv.javaguru.java2.models.UserModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,7 +48,7 @@ public class UserDAO extends JDBCDatabase
     }
 
     @Override
-    public Optional<User> findUser(UserModel user) {
+    public Optional<User> findUser(User user) {
         Connection connection = null;
 
         try {
@@ -90,7 +89,7 @@ public class UserDAO extends JDBCDatabase
         }
     }
     @Override
-    public void remove(UserModel user) {
+    public void remove(User user) {
         Connection connection = null;
         try {
             connection = getConnection();
