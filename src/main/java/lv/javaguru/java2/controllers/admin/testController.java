@@ -16,7 +16,7 @@ public class testController {
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    @RequestMapping( value = "/endPoints", method = RequestMethod.GET )
+    @RequestMapping( value = "/admin/endPoints", method = RequestMethod.GET )
     public String getEndPointsInView( Model model )
     {
         Set endpoints = requestMappingHandlerMapping.getHandlerMethods().keySet();

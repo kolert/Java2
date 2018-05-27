@@ -6,6 +6,9 @@ import lv.javaguru.java2.database.Users.UserDatabase;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,11 +23,13 @@ import static org.junit.Assert.assertNull;
 @ContextConfiguration(classes = { SpringAppConfig.class })
 @Transactional
 @Rollback(false)
+@Repository
 public abstract class OrmTest {
 
     //@Autowired private JDBCDatabase database;
 
     @Autowired
+    @Qualifier("userRepository")
     protected UserDatabase userRepository;
 
     @Before

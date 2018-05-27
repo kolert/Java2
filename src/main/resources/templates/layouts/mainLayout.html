@@ -7,15 +7,15 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/jquery.DonutWidget.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/linearicons.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/css/jquery.DonutWidget.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -67,8 +67,8 @@
         <div class="sidebar" th:if="${session.auth != null && session.auth == true && session.user.role == 'A'}"  th:fragment="sidebar">
             <ul>
                 <li><h3>Admin Controlls</h3></li>
-                <li><a href="/endPoints">EndPoints</a></li>
-                <li><a href="/addUser">Add User</a></li>
+                <li><a href="/admin/endPoints">EndPoints</a></li>
+                <li><a href="/admin/addUser">Add User</a></li>
             </ul>
             <script>
                 document.onload = function(){

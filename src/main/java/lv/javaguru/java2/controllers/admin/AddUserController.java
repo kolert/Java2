@@ -24,11 +24,11 @@ import java.util.List;
 @Controller
 public class AddUserController {
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/addUser", method = RequestMethod.GET)
     public String dispayUser(HttpServletRequest request, Model model) {
         return "admin/user_add";
     }
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addUser", method = RequestMethod.POST)
     public RedirectView registeUser(HttpServletRequest request, HttpSession session,
                                     Model model,RedirectAttributes redirectAttributes) {
         model.addAttribute("h1Text","Text from controller");
@@ -78,10 +78,10 @@ public class AddUserController {
             }
         }
         if (success == false){
-            redirectView.setUrl("/userAdd");
+            redirectView.setUrl("/admin/userAdd");
         }
         else {
-            redirectView.setUrl("/userList");
+            redirectView.setUrl("/admin/userList");
         }
         return redirectView;
     }

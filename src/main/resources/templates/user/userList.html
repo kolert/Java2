@@ -29,7 +29,7 @@
             </tr>
             <tr th:each="user : ${users}">
                 <td th:if="${session.user.role == 'A'}">
-                    <a th:href="@{/updateUser(ref=${user.id})}">EDIT</a>
+                    <a th:href="@{/admin/updateUser(ref=${user.id})}">EDIT</a>
                 </td>
                 <td th:text="${user.getLogin()}"></td>
                 <td th:if="${session.user.role == 'A'}" th:text="${user.getPassword()}"></td>

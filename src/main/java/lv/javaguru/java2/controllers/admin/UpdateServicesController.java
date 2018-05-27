@@ -30,11 +30,11 @@ import java.util.Optional;
 @Controller
 public class UpdateServicesController {
 
-    @RequestMapping(value = "/updateservice", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/updateservice", method = RequestMethod.GET)
     public String addServiceView(HttpServletRequest request, Model model) {
         return "user/updateservice";
     }
-    @RequestMapping(value = "/updateservice", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/updateservice", method = RequestMethod.POST)
     public RedirectView addServiceView(HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes) {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -49,10 +49,10 @@ public class UpdateServicesController {
         product = applicationContext.getBean(FindProductView.class).get(title);
 
         if(!success){
-            redirectView.setUrl("/updateservice");
+            redirectView.setUrl("/admin/updateservice");
             return redirectView;
         }
-        redirectView.setUrl("/services");
+        redirectView.setUrl("/admin/services");
         return redirectView;
     }
 }

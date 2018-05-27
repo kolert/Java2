@@ -131,4 +131,19 @@ public class User {
             return new Response(true,null);
         }
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", created=" + created +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                '}';
+    }
 }

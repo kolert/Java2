@@ -27,7 +27,7 @@ import java.util.Optional;
 @Controller
 public class UpdateUserController {
 
-    @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/updateUser", method = RequestMethod.GET)
     public String dispayUserEdit(HttpServletRequest request, Model model) {
         User userModel = new User();
         userModel.setId(Long.parseLong(request.getParameter("ref")));
@@ -38,7 +38,7 @@ public class UpdateUserController {
         model.addAttribute("action","edit");
         return "admin/user_add";
     }
-    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/updateUser", method = RequestMethod.POST)
     public RedirectView updateUser(HttpServletRequest request, HttpSession session,
                                     Model model,RedirectAttributes redirectAttributes) {
         model.addAttribute("h1Text","Text from controller");
@@ -47,6 +47,7 @@ public class UpdateUserController {
         String email = request.getParameter("email");
         String status = request.getParameter("status");
         User userModel = new User();
+        userModel.setId(Long.parseLong(request.getParameter("ref")));
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
@@ -64,6 +65,7 @@ public class UpdateUserController {
                 userModel.setLogin(foundUser.get().getLogin());
                 userModel.setPassword(foundUser.get().getPassword());
                 userModel.setRole(foundUser.get().getRole().charAt(0));
+                userModel.setCreated(foundUser.get().getCreated());
                 applicationContext.getBean(UpdateUserView.class).execute(userModel);
             }else{
                 success = false;
@@ -73,7 +75,8 @@ public class UpdateUserController {
             System.out.println(e);
         }
         if (success == false){
-            redirectView.setUrl("/updateUser");
+            redirectView.addStaticAttribute("ref",request.getParameter("ref"));
+            redirectView.setUrl("/admin/updateUser");
         }
         else {
             redirectView.setUrl("/userList");
