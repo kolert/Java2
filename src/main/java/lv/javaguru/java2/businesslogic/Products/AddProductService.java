@@ -3,7 +3,9 @@ package lv.javaguru.java2.businesslogic.Products;
 import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.database.Products.ProductDatabase;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddProductService {
 
     private ProductDatabase productDatabase;

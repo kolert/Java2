@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
-public class AddUserServiceTest extends OrmTest {
+public class AddUserServiceTest extends OrmTestOne {
 
     @Test
     public void addUserTest() throws Exception {

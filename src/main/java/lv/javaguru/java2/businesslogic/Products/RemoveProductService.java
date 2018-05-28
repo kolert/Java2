@@ -3,9 +3,11 @@ package lv.javaguru.java2.businesslogic.Products;
 import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.database.Products.ProductDatabase;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class RemoveProductService {
 
     private ProductDatabase productDatabase;
