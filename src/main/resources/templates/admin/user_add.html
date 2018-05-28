@@ -23,7 +23,7 @@
                            placeholder=""
                            class="input-xlarge"
                            th:if="${action==null || action != 'edit'}"
-                           th:value="${user.getLogin()}">
+                           th:value="${user!=null?user.getLogin():''}">
                     <p th:if="${action!=null && action == 'edit'}" th:text="${user!=null?user.getLogin():''}">
                     </p>
                 </div>

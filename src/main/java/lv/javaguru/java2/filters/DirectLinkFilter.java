@@ -46,7 +46,7 @@ public class DirectLinkFilter implements Filter {
                 requestDispatcher.forward(req,resp);
             }
         }
-        if("/admin/".contains(contextURI)){
+        if(contextURI.contains("/admin/")){
             RequestDispatcher requestDispatcher = null;
             if(session.getAttribute("auth")==null || !session.getAttribute("auth").equals(true) ||
                     !((User)session.getAttribute("user")).getRole().equals("A")) {

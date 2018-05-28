@@ -26,13 +26,18 @@ public class UpdateUserService {
         System.out.println(model.toString());
         Optional<User> foundUser = userORMDatabase.findUser(userModel);
         if (foundUser.isPresent()) {
+            userModel = foundUser.get();
             try {
-                System.out.println(userModel.toString());
+                userModel.setName(((User)model).getName());
+                userModel.setSurname(((User)model).getSurname());
+                userModel.setStatus(((User)model).getStatus());
+                userModel.setEmail(((User)model).getEmail());
                 userORMDatabase.update(userModel);
                 System.out.println("User updated");
             }catch(Exception e){
                 e.printStackTrace();
             }
+            //return ret;
         } else {
             throw new InvalidDataException("User does not exists!");
         }

@@ -1,5 +1,6 @@
 package lv.javaguru.java2.views.Users;
 
+import lv.javaguru.java2.businesslogic.users.UpdateUserPasswordService;
 import lv.javaguru.java2.businesslogic.users.UpdateUserService;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class UpdateUserPasswordView implements View {
 
     @Autowired
-    private UpdateUserService updateUserService;
+    private UpdateUserPasswordService updateUserService;
 
     @Override
     public Object get(Object model) throws InvalidDataException{
