@@ -15,13 +15,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Component
-public class DirectLinkFIlter implements Filter {
-    private static Logger logger = Logger.getLogger(DirectLinkFIlter.class.getName());
-    private static String[] restrictedUrls = new String[]{"/userList",
-            "/endPoints","/addUser"};
+public class DirectLinkFilter implements Filter {
+    private static Logger logger = Logger.getLogger(DirectLinkFilter.class.getName());
+    private static String[] restrictedUrls = new String[]{"/userList"};
     private List<String> endpointList;
 
-    public DirectLinkFIlter() {
+    public DirectLinkFilter() {
     }
 
     @Override
@@ -47,7 +46,7 @@ public class DirectLinkFIlter implements Filter {
                 requestDispatcher.forward(req,resp);
             }
         }
-        if("/endPoints".contains(contextURI)){
+        if("/admin/".contains(contextURI)){
             RequestDispatcher requestDispatcher = null;
             if(session.getAttribute("auth")==null || !session.getAttribute("auth").equals(true) ||
                     !((User)session.getAttribute("user")).getRole().equals("A")) {

@@ -4,16 +4,15 @@ import lv.javaguru.java2.businesslogic.Products.RemoveProductService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
 public class RemoveProductView implements View {
 
+    @Autowired
     private RemoveProductService removeProductService;
 
-    public RemoveProductView(ProductDatabase database) {
-        this.removeProductService = new RemoveProductService(database);
-    }
 
     @Override
     public void execute(Object model) throws InvalidDataException {

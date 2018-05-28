@@ -27,7 +27,6 @@ public class UpdateUserService {
         Optional<User> foundUser = userORMDatabase.findUser(userModel);
         if (foundUser.isPresent()) {
             try {
-                User tempUser = foundUser.get();
                 System.out.println(userModel.toString());
                 userORMDatabase.update(userModel);
                 System.out.println("User updated");

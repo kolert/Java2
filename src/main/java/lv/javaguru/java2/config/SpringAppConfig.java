@@ -1,6 +1,6 @@
 package lv.javaguru.java2.config;
 
-import lv.javaguru.java2.filters.DirectLinkFIlter;
+import lv.javaguru.java2.filters.DirectLinkFilter;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -91,6 +91,6 @@ public class SpringAppConfig {
     }
 
     public Filter someFilter() {
-        return new DirectLinkFIlter();
+        return new DirectLinkFilter();
     }
 }

@@ -5,6 +5,7 @@ import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.views.Users.FindUserView;
+import lv.javaguru.java2.views.Users.UpdateUserPasswordView;
 import lv.javaguru.java2.views.Users.UpdateUserView;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -56,7 +57,7 @@ public class PasswordChangeController {
             try {
                 if (PasswordFunctions.check(oldPassword, userModel.getPassword())){
                     userModel.setPassword(password);
-                    applicationContext.getBean(UpdateUserView.class).execute(userModel);
+                    applicationContext.getBean(UpdateUserPasswordView.class).execute(userModel);
                 }else{
                     success = false;
                 }

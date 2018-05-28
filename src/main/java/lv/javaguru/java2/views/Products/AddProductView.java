@@ -4,16 +4,14 @@ import lv.javaguru.java2.businesslogic.Products.AddProductService;
 import lv.javaguru.java2.database.Products.ProductDatabase;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
 public class AddProductView implements View {
 
+    @Autowired
     private AddProductService addProductService;
-
-    public AddProductView(ProductDatabase database) {
-        this.addProductService = new AddProductService(database);
-    }
 
     @Override
     public void execute(Object model) throws InvalidDataException {

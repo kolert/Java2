@@ -27,11 +27,11 @@ import java.util.List;
 @Controller
 public class AddServicesController {
 
-    @RequestMapping(value = "/addservice", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/addservice", method = RequestMethod.GET)
     public String dispayUser(HttpServletRequest request, Model model) {
         return "admin/addservice";
     }
-    @RequestMapping(value = "/addservice", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addservice", method = RequestMethod.POST)
     public RedirectView addServiceView(HttpServletRequest request, HttpSession session ,RedirectAttributes redirectAttributes) throws InvalidDataException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
