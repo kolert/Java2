@@ -3,6 +3,7 @@ package lv.javaguru.java2.businesslogic.users;
 import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.database.Users.UserDatabase;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,19 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { SpringAppConfig.class })
 @Transactional
-@Rollback(false)
+@Rollback(true)
 public abstract class OrmTestOne {
 
+//    @Autowired
+//    protected UserDatabase userRepository;
+
     @Autowired
-    protected UserDatabase userRepository;
+    protected AddUserService addUserService;
 
     @Before
     public void init(){};
 
-    protected User saveUser(String name, String surname, String login, String password, String email, char role, char status) {
+    protected User addUser(String name, String surname, String login, String password, String email, char role, char status) {
         User user = new User();
 
         user.setName("name");
@@ -40,9 +44,20 @@ public abstract class OrmTestOne {
         user.setRole('U');
         user.setStatus('A');
 
-        assertNull(user.getLogin());
-        userRepository.add(user);
+        try {
+            addUserService.addUser(user);
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
+
+        assertNotNull(user.getId());
+        assertNotNull(user.getName());
+        assertNotNull(user.getSurname());
         assertNotNull(user.getLogin());
+        assertNotNull(user.getPassword());
+        assertNotNull(user.getEmail());
+        assertNotNull(user.getRole());
+        assertNotNull(user.getStatus());
 
         return user;
     }
