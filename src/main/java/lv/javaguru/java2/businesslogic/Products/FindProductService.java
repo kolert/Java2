@@ -16,8 +16,8 @@ public class FindProductService {
     @Autowired
     private ProductRepository productRepository;
     @Transactional
-    public Optional<Product> findProduct(Object model) {
-        Optional<Product> foundUser = productRepository.findProduct((Product) model);
+    public Optional<Product> findProduct(Product model) {
+        Optional<Product> foundUser = productRepository.findProduct(model);
         return foundUser;
     }
     @Transactional

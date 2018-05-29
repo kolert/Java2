@@ -18,7 +18,7 @@ public class FindProductView implements View {
 
     @Override
     public Optional<Product> get(Object product) {
-        return findProductService.findProduct(((User) product));
+        return findProductService.findProduct(((Product) product));
     }
     @Override
     public void execute(Object model) throws InvalidDataException{
