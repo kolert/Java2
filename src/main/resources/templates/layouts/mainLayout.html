@@ -60,6 +60,9 @@
                     </div>
                 </div>
             </nav>
+            <div class="alert alert-danger" th:if="${error!=null}" style="width: 50%;margin-left: 47vW;margin-top: 4vw;">
+                <strong>ERROR!</strong> <p th:text="${error}"></p>
+            </div>
         </div>
         <div class="sidebar" th:if="${session.auth != null && session.auth == true && session.user.role == 'A'}"  th:fragment="sidebar">
             <ul>

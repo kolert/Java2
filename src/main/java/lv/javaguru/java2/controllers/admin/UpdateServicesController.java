@@ -9,6 +9,7 @@ import lv.javaguru.java2.database.Entities.User;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.views.Products.FindProductView;
+import lv.javaguru.java2.views.Products.RemoveProductView;
 import lv.javaguru.java2.views.Products.UpdateProductView;
 import lv.javaguru.java2.views.Users.AddUserView;
 import lv.javaguru.java2.views.Users.FindUserView;
@@ -43,8 +44,8 @@ public class UpdateServicesController {
         model.addAttribute("action","edit");
         return "admin/addservice";
     }
-    @RequestMapping(value = "/admin/updateService", method = RequestMethod.POST)
-    public RedirectView addServiceView(HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/admin/updateService", method = RequestMethod.POST, params="action=update")
+    public RedirectView updateServiceView(HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("h1Text","Text from controller");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -75,6 +76,23 @@ public class UpdateServicesController {
         else {
             redirectView.setUrl("/services");
         }
+        return redirectView;
+    }
+    @RequestMapping(value = "/admin/updateService", method = RequestMethod.POST, params="action=remove")
+    public RedirectView removeServiceView(HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        Product productModel = new Product();
+        productModel.setId(Long.parseLong(request.getParameter("ref")));
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
+
+        ApplicationContext applicationContext
+                = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        try {
+            applicationContext.getBean(RemoveProductView.class).execute(productModel);
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
+        redirectView.setUrl("/services");
         return redirectView;
     }
 }

@@ -29,8 +29,10 @@ class ProductORM extends ORMRepository
         Criteria hql = session().createCriteria(Product.class);
         if(product.getId()!=null&&product.getId()!=0)
             hql.add(Restrictions.eq("id",product.getId()));
-        if(product.getTitle()!=null&&!product.getTitle().isEmpty())
-            hql.add(Restrictions.eq("title",product.getTitle()));
+        else {
+            if (product.getTitle() != null && !product.getTitle().isEmpty())
+                hql.add(Restrictions.eq("title", product.getTitle()));
+        }
         Product user =(Product) hql.uniqueResult();
         return Optional.ofNullable(user);
     }

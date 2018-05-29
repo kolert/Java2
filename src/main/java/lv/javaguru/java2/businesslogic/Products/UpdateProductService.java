@@ -32,7 +32,7 @@ public class UpdateProductService {
                 e.printStackTrace();
             }
         } else {
-            throw new InvalidDataException("User does not exists!");
+            throw new InvalidDataException("Product does not exists!");
         }
     }
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,31 +29,39 @@ public class LogInUserController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String onPost(HttpServletRequest request, HttpSession session, Model model) {
+    public String onPost(HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Optional<User> user = null;
-        User tempUser = new User();
-        tempUser.setLogin(login);
-        tempUser.setPassword(password);
-        ApplicationContext applicationContext
-                = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-        user = applicationContext.getBean(FindUserView.class).get(tempUser);
-        if (user.isPresent()) {
-            User userModel = user.get();
-            try {
-                if (PasswordFunctions.check(password, userModel.getPassword())){
-                    request.getSession(true);
-                    session.setAttribute("auth", true);
-                    session.setAttribute("user", userModel);
-                    if(userModel.getRole().equals("A")){
-                        session.setAttribute("sideBar","active");
+        if(login!=null&&!login.isEmpty()&&password!=null&&!password.isEmpty()) {
+            Optional<User> user = null;
+            User tempUser = new User();
+            tempUser.setLogin(login);
+            tempUser.setPassword(password);
+            ApplicationContext applicationContext
+                    = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+            user = applicationContext.getBean(FindUserView.class).get(tempUser);
+            if (user.isPresent()) {
+                User userModel = user.get();
+                try {
+                    if (PasswordFunctions.check(password, userModel.getPassword())) {
+                        request.getSession(true);
+                        session.setAttribute("auth", true);
+                        session.setAttribute("user", userModel);
+                        if (userModel.getRole().equals("A")) {
+                            session.setAttribute("sideBar", "active");
+                        }
+                        return "redirect:/userList";
+                    } else {
+                        model.addAttribute("error", "Incorrect login or password!");
                     }
-                    return "redirect:/userList";
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }catch (Exception e){
-                e.printStackTrace();
+            } else {
+                model.addAttribute("error", "Incorrect login or password!");
             }
+        }else{
+            model.addAttribute("error", "Input login and password!");
         }
         return "user/login";
     }

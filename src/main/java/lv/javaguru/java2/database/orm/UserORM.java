@@ -26,8 +26,10 @@ class UserORM extends ORMRepository
         Criteria hql = session().createCriteria(User.class);
         if(userModel.getId()!=null&&userModel.getId()!=0)
             hql.add(Restrictions.eq("id",userModel.getId()));
-        if(userModel.getLogin()!=null&&!userModel.getLogin().isEmpty())
-            hql.add(Restrictions.eq("login",userModel.getLogin()));
+        else {
+            if (userModel.getLogin() != null && !userModel.getLogin().isEmpty())
+                hql.add(Restrictions.eq("login", userModel.getLogin()));
+        }
         User user =(User) hql.uniqueResult();
         return Optional.ofNullable(user);
 
