@@ -26,7 +26,7 @@ class ProductORM extends ORMRepository
     }
     @Override
     public Optional<Product> findProduct(Product product){
-        Criteria hql = session().createCriteria(User.class);
+        Criteria hql = session().createCriteria(Product.class);
         if(product.getId()!=null&&product.getId()!=0)
             hql.add(Restrictions.eq("id",product.getId()));
         if(product.getTitle()!=null&&!product.getTitle().isEmpty())
