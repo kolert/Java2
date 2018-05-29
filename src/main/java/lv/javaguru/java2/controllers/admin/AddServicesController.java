@@ -27,11 +27,11 @@ import java.util.List;
 @Controller
 public class AddServicesController {
 
-    @RequestMapping(value = "/admin/addservice", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/addService", method = RequestMethod.GET)
     public String dispayUser(HttpServletRequest request, Model model) {
         return "admin/addservice";
     }
-    @RequestMapping(value = "/admin/addservice", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addService", method = RequestMethod.POST)
     public RedirectView addServiceView(HttpServletRequest request, HttpSession session ,RedirectAttributes redirectAttributes) throws InvalidDataException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -49,9 +49,7 @@ public class AddServicesController {
                 = new AnnotationConfigApplicationContext(SpringAppConfig.class);
         applicationContext.getBean(AddProductView.class).execute(product);
 
-        //List<Error> validatorRespose = AddUserValidator.validate(product.getTitle(),product.getDescription(),product.getImgUrl());
-
-        redirectView.setUrl("/admin/services");
+        redirectView.setUrl("/services");
         return redirectView;
     }
 }
