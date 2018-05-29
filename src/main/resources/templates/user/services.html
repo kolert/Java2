@@ -43,8 +43,8 @@
                 <div class="product-description" th:text="${product.getDescription()}">
                     <span>placeholder</span>
                 </div>
-                <div class="product-button">
-                    <a href="#" class="primary-btn2 header-btn text-uppercase">SELECT</a>
+                <div class="product-button" th:if="${session!=null && session.user!=null && session.user.role == 'A'}">
+                    <a class="primary-btn2 header-btn text-uppercase" th:href="@{/admin/updateService(ref=${product.id})}">EDIT</a>
                 </div>
             </div>
             <!-- repeat -->
