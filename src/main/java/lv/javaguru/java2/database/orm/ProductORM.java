@@ -18,6 +18,11 @@ class ProductORM extends ORMRepository
     public void remove(Product product){
         session().delete(product);
     }
+
+    @Override
+    public void update(Product product) {
+        session().saveOrUpdate(product);
+    }
     @Override
     public Optional<Product> findProduct(Product product){
         String title = product.getTitle();

@@ -17,13 +17,7 @@ public class AddProductService {
         this.productDatabase = productDatabase;
     }
 
-    public void addProduct(String title,
-                           String description,
-                           String imgUrl) throws InvalidDataException {
-        Product product = new Product();
-        product.setTitle(title);
-        product.setDescription(description);
-        product.setImgUrl(imgUrl);
+    public void addProduct(Product product) {
         productDatabase.save(product);
     }
 

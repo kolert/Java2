@@ -51,7 +51,7 @@ public class AddServicesController {
 
         //List<Error> validatorRespose = AddUserValidator.validate(product.getTitle(),product.getDescription(),product.getImgUrl());
 
-        redirectView.setUrl("/services");
+        redirectView.setUrl("/admin/services");
         return redirectView;
     }
 }

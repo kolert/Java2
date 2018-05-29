@@ -9,6 +9,7 @@ public interface ProductRepository {
 
     void save(Product product);
     void remove(Product product);
+    void update(Product product);
     List<Product> getAllProducts();
     Optional<Product> findProduct(Product product);
 }
