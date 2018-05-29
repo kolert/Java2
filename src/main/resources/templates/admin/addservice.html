@@ -17,19 +17,19 @@
             <div class="control-group">
                 <label class="control-label"  for="title">Title</label>
                 <div class="controls">
-                    <input type="text" id="title" name="title" placeholder="" class="input-xlarge">
+                    <input type="text" id="title" name="title" placeholder="" class="input-xlarge" th:value="${product!=null?product.getTitle():''}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="description">Description</label>
                 <div class="controls">
-                    <input type="text" id="description" name="description" placeholder="" class="input-xlarge">
+                    <input type="text" id="description" name="description" placeholder="" class="input-xlarge" th:value="${product!=null?product.getDescription():''}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"  for="imgUrl">Image</label>
                 <div class="controls">
-                    <input type="text" id="imgUrl" name="imgUrl" placeholder="" class="input-xlarge">
+                    <input type="text" id="imgUrl" name="imgUrl" placeholder="" class="input-xlarge" th:value="${product!=null?product.imgUrl:''}">
                     <p class="help-block">Press Add button to finish</p>
                 </div>
             </div>

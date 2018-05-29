@@ -32,27 +32,44 @@ public class UpdateServicesController {
 
     @RequestMapping(value = "/admin/updateService", method = RequestMethod.GET)
     public String addServiceView(HttpServletRequest request, Model model) {
-        return "user/updateservice";
+        Product productModel = new Product();
+        productModel.setId(Long.parseLong(request.getParameter("ref")));
+        ApplicationContext applicationContext
+                = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        Optional<Product> product=applicationContext.getBean(FindProductView.class).get(productModel);
+        model.addAttribute("product", product.get());
+        model.addAttribute("action","edit");
+        return "admin/addservice";
     }
     @RequestMapping(value = "/admin/updateService", method = RequestMethod.POST)
-    public RedirectView addServiceView(HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes) {
+    public RedirectView addServiceView(HttpServletRequest request, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute("h1Text","Text from controller");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String imgUrl = request.getParameter("imgUrl");
+        Product productModel = new Product();
+        productModel.setId(Long.parseLong(request.getParameter("ref")));
+        productModel.setTitle(title);
+        productModel.setDescription(description);
+        productModel.setImgUrl(imgUrl);
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
 
         boolean success = true;
-        RedirectView redirectView = new RedirectView();
 
         Optional<Product> product = null;
         ApplicationContext applicationContext
                 = new AnnotationConfigApplicationContext(SpringAppConfig.class);
         product = applicationContext.getBean(FindProductView.class).get(title);
 
-        if(!success){
+        if (success == false){
+            redirectView.addStaticAttribute("ref",request.getParameter("ref"));
             redirectView.setUrl("/admin/updateService");
-            return redirectView;
         }
-        redirectView.setUrl("/services");
+        else {
+            redirectView.setUrl("/services");
+        }
         return redirectView;
     }
 }
