@@ -6,8 +6,10 @@ import lv.javaguru.java2.businesslogic.users.AddUserValidator;
 import lv.javaguru.java2.config.SpringAppConfig;
 import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.database.Entities.User;
+import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.functions.PasswordFunctions;
 import lv.javaguru.java2.views.Products.FindProductView;
+import lv.javaguru.java2.views.Products.UpdateProductView;
 import lv.javaguru.java2.views.Users.AddUserView;
 import lv.javaguru.java2.views.Users.FindUserView;
 import lv.javaguru.java2.views.Users.UpdateUserView;
@@ -58,10 +60,13 @@ public class UpdateServicesController {
 
         boolean success = true;
 
-        Optional<Product> product = null;
         ApplicationContext applicationContext
                 = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-        product = applicationContext.getBean(FindProductView.class).get(title);
+        try {
+            applicationContext.getBean(UpdateProductView.class).execute(productModel);
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
 
         if (success == false){
             redirectView.addStaticAttribute("ref",request.getParameter("ref"));
