@@ -32,7 +32,7 @@ public abstract class OrmTestOne {
     @Before
     public void init(){};
 
-    protected User addUser(String name, String surname, String login, String password, String email, char role, char status) {
+    protected User addUser(String name, String surname, String login, String password, String email, char role, char status, String phone) {
         User user = new User();
 
         user.setName("name");
@@ -41,6 +41,7 @@ public abstract class OrmTestOne {
         user.setPassword("password");
         user.setCreated(new java.sql.Timestamp((new Date()).getTime()));
         user.setEmail("email");
+        user.setPhone(phone);
         user.setRole('U');
         user.setStatus('A');
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: sidebar"></div>
+<div th:replace="layouts/mainLayout :: nav"></div>
+<div class="container">
+    <div>
+        <h1>Send mail</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>Sender Id</td>
+                <td>Recipient Id</td>
+                <td>Message</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${mailList.empty}">
+                <td colspan="4">No users</td>
+            </tr>
+            <tr th:each="mail : ${mailList}" th:object="${mail}">
+                <td th:text="${mail.senderId}"></td>
+                <td th:text="${mail.recipientId}"></td>
+                <td th:text="${mail.message}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -50,11 +50,22 @@
                             <li th:if="${session.auth == null || session.auth != true}"><a href="/registration">Register</a></li>
                             <li th:if="${session.auth == null || session.auth != true}"><a href="/login">Log In</a></li>
                             <li class="dropdown" th:if="${session.auth == true}">
+                                <a class="dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                                    Mail
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a th:if="${session.auth == true}" href="/contact">New</a>
+                                    <a th:if="${session.auth == true}" href="/sendMail">Send Mail</a>
+                                    <a th:if="${session.auth == true}" href="/recievedMail">Recieved Mail</a>
+                                </div>
+                            </li>
+                            <li class="dropdown" th:if="${session.auth == true}">
                                 <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" th:text="${session.user.name}">
                                     User
                                 </a>
                                 <div class="dropdown-menu">
                                     <a th:if="${session.auth == true}" href="/passwordChange">Change password</a>
+                                    <a th:if="${session.auth == true}" href="/contact">Send Mail</a>
                                 </div>
                             </li>
                             <li th:if="${session.auth == true}"><a href="/logout">Log Out</a></li>

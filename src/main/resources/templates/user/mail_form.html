@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Service</title>
+    <!--/*/<th:block th:include="layouts/mainLayout :: head"></th:block>/*/-->
+</head>
+<body>
+<div th:replace="layouts/mainLayout :: sidebar"></div>
+<div th:replace="layouts/mainLayout :: nav"></div>
+
+<div class="container">
+    <form class="form-horizontal" method="POST">
+        <fieldset>
+            <div id="legend">
+                <legend class="">Send Mail</legend>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="recLogin">Rec login</label>
+                <div class="controls">
+                    <input type="text" id="recLogin" name="recLogin" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"  for="mail_message">Message</label>
+                <div class="controls">
+                    <input type="text" id="mail_message" name="mail_message" placeholder="" class="input-xlarge">
+                    <p class="help-block">Press Send button to finish</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-info" name="action">Send</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="layouts/mainLayout :: footer"></div>
+</body>
+</html>

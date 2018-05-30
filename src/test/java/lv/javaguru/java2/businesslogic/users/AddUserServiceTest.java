@@ -15,7 +15,7 @@ public class AddUserServiceTest extends OrmTestOne {
 
     @Test
     public void addUserTest() throws Exception {
-        User user1 = addUser("name", "surname", "login", "password","email", 'U', 'A');
+        User user1 = addUser("name", "surname", "login", "password","email", 'U', 'A', "22222222");
         Optional<User> found = findUserService.findUser(user1);
         assertTrue(String.valueOf((found.isPresent())), true);
     }

@@ -1,27 +1,27 @@
-package lv.javaguru.java2.views.Products;
+package lv.javaguru.java2.views.Mail;
 
-import lv.javaguru.java2.businesslogic.Mail.AddMailService;
+import lv.javaguru.java2.businesslogic.Mail.RemoveMailService;
 import lv.javaguru.java2.database.Entities.Mail;
+import lv.javaguru.java2.database.Entities.Product;
 import lv.javaguru.java2.exceptions.InvalidDataException;
 import lv.javaguru.java2.views.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddProductView implements View {
+public class RemoveMailView implements View {
 
     @Autowired
-    private AddMailService addMailService;
+    private RemoveMailService removeMailService;
+
 
     @Override
     public void execute(Object model) throws InvalidDataException {
-
-        addMailService.addMail((Mail)model);
-        System.out.println("Product added!");
+        removeMailService.removeProduct((Mail) model);
     }
+
     @Override
-    public Object get(Object model) throws InvalidDataException{
+    public String get(Object model) throws InvalidDataException {
         return null;
     }
-
 }

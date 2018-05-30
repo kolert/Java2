@@ -38,6 +38,7 @@ public class RegisterUserController {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
 
         User userModel = new User();
         userModel.setLogin(login);
@@ -45,6 +46,7 @@ public class RegisterUserController {
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
+        userModel.setPhone(phone);
         userModel.setStatus('A');
         userModel.setRole('U');
 
