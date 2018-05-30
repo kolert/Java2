@@ -13,19 +13,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 @Scope("session")
 public class ErrorController {
-
-    @RequestMapping(value = "/404", method = RequestMethod.GET)
-    public RedirectView error404(HttpServletRequest request, HttpSession session, Model model) {
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public RedirectView error(HttpServletRequest request, HttpSession session, Model model) {
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(false);
         redirectView.setUrl("/");
-        return redirectView;
-        }
-    @RequestMapping(value = "/500", method = RequestMethod.GET)
-    public RedirectView error500(HttpServletRequest request, HttpSession session, Model model) {
-        RedirectView redirectView = new RedirectView();
-        redirectView.setContextRelative(false);
-        redirectView.setUrl("/");
+        model.addAttribute("error","Oops! Something went wrong!");
         return redirectView;
     }
 }

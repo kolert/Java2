@@ -45,12 +45,14 @@ public class UpdateUserController {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         String status = request.getParameter("status");
         User userModel = new User();
         userModel.setId(Long.parseLong(request.getParameter("ref")));
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
+        userModel.setPhone(phone);
         userModel.setStatus(status.charAt(0));
 
         RedirectView redirectView = new RedirectView();

@@ -44,13 +44,17 @@ public class LogInUserController {
                 User userModel = user.get();
                 try {
                     if (PasswordFunctions.check(password, userModel.getPassword())) {
-                        request.getSession(true);
-                        session.setAttribute("auth", true);
-                        session.setAttribute("user", userModel);
-                        if (userModel.getRole().equals("A")) {
-                            session.setAttribute("sideBar", "active");
+                        if(userModel.getStatus() == 'A') {
+                            request.getSession(true);
+                            session.setAttribute("auth", true);
+                            session.setAttribute("user", userModel);
+                            if (userModel.getRole().equals("A")) {
+                                session.setAttribute("sideBar", "active");
+                            }
+                            return "redirect:/userList";
+                        }else{
+                            model.addAttribute("error", "User is blocked!");
                         }
-                        return "redirect:/userList";
                     } else {
                         model.addAttribute("error", "Incorrect login or password!");
                     }

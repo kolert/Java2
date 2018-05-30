@@ -32,6 +32,7 @@ public class UpdateUserService {
                 userModel.setSurname(((User)model).getSurname());
                 userModel.setStatus(((User)model).getStatus());
                 userModel.setEmail(((User)model).getEmail());
+                userModel.setPhone(((User)model).getPhone());
                 userORMDatabase.update(userModel);
                 System.out.println("User updated");
             }catch(Exception e){

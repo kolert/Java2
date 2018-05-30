@@ -26,6 +26,8 @@ public class User {
     private Timestamp created;
     @Column(name="email",nullable = false)
     private String email;
+    @Column(name="phone",nullable = false)
+    private String phone;
     @Column(name="role",nullable = false)
     private char role;
     @Column(name="status",nullable = false)
@@ -103,6 +105,14 @@ public class User {
         this.status = status;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public void setModel(User userModel){
         setEmail(userModel.getEmail());
         setName(userModel.getName());
@@ -113,6 +123,7 @@ public class User {
         setRole(userModel.getRole().charAt(0));
         setStatus(userModel.getStatus());
         setSurname(userModel.getSurname());
+        setPhone(userModel.getPhone());
     }
 
     public Response validate(){
@@ -131,7 +142,7 @@ public class User {
             return new Response(true,null);
         }
     }
-
+    //TODO add contact number
     @Override
     public String toString() {
         return "User{" +
@@ -142,6 +153,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", created=" + created +
                 ", email='" + email + '\'' +
+                ", phone='" + phone +'\'' +
                 ", role=" + role +
                 ", status=" + status +
                 '}';

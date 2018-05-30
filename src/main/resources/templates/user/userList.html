@@ -10,15 +10,17 @@
 <div th:replace="layouts/mainLayout :: nav"></div>
 <div class="container">
     <div>
+        <h1 th:text="${session.user.role == 'U'?'Administrator contact list':'User List'}"></h1>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
                 <td th:if="${session.user.role == 'A'}">Edit</td>
-                <td>Login</td>
+                <td th:if="${session.user.role == 'A'}">Login</td>
                 <td th:if="${session.user.role == 'A'}">Password</td>
                 <td>Name</td>
                 <td>Surname</td>
                 <td>Email</td>
+                <td>Phone</td>
                 <td th:if="${session.user.role == 'A'}">Role</td>
                 <td th:if="${session.user.role == 'A'}">Status</td>
             </tr>
@@ -27,15 +29,17 @@
             <tr th:if="${users.empty}">
                 <td colspan="4">No users</td>
             </tr>
-            <tr th:each="user : ${users}">
+            <tr th:each="user : ${users}" th:object="${user}"
+                th:if="${session.user.role == 'A' || user.role == 'A'}">
                 <td th:if="${session.user.role == 'A'}">
                     <a th:href="@{/admin/updateUser(ref=${user.id})}">EDIT</a>
                 </td>
-                <td th:text="${user.getLogin()}"></td>
+                <td th:if="${session.user.role == 'A'}" th:text="${user.getLogin()}"></td>
                 <td th:if="${session.user.role == 'A'}" th:text="${user.getPassword()}"></td>
                 <td th:text="${user.getName()}"></td>
                 <td th:text="${user.getSurname()}"></td>
                 <td th:text="${user.getEmail()}"></td>
+                <td th:text="${user.phone}"></td>
                 <td th:if="${session.user.role == 'A'}" th:text="${user.getRole()}"></td>
                 <td th:if="${session.user.role == 'A'}" th:text="${user.getStatus()}"></td>
             </tr>

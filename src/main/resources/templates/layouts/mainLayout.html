@@ -8,6 +8,8 @@
     <meta name="keywords" content="">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="all" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/custome.js"></script>
     <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="/css/linearicons.css">
@@ -60,8 +62,15 @@
                     </div>
                 </div>
             </nav>
-            <div class="alert alert-danger" th:if="${error!=null}" style="width: 50%;margin-left: 47vW;margin-top: 4vw;">
+            <div class="alert alert-danger" role="alert" th:if="${error!=null}" style="width: 50%;margin-left: 47vW;margin-top: 4vw;">
+                <button class="close" data-dismiss="alert"
+                   aria-label="close" title="close">×</button>
                 <strong>ERROR!</strong> <p th:text="${error}"></p>
+                <script>
+                    $(".close").click(function(){
+                        $(".alert-danger").remove();
+                    });
+                </script>
             </div>
         </div>
         <div class="sidebar" th:if="${session.auth != null && session.auth == true && session.user.role == 'A'}"  th:fragment="sidebar">

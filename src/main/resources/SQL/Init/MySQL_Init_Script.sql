@@ -11,6 +11,7 @@ CREATE TABLE `java2`.`users` (
   `PASSWORD` VARCHAR(245) NOT NULL,
   `CREATED` DATETIME NOT NULL,
   `EMAIL` VARCHAR(245) NOT NULL,
+  `PHONE` VARCHAR(245) NOT NULL,
   `ROLE` CHAR(1) NOT NULL,
   `STATUS` CHAR(1) NOT NULL,
   PRIMARY KEY (`ID`)
@@ -19,6 +20,6 @@ CREATE TABLE `java2`.`users` (
   AUTO_INCREMENT = 1002;
 
 /* CREATING ADMIN USER */
-INSERT INTO java2.users(`id`,`name`,`surname`,`login`,`password`,`created`,`email`,`role`,`status`)
-VALUES ('1','SUPER','ADMIN','sa','pugUOEJeVo53HZWYswYNKp8gx66AHVW6IfDXRMPc9wY=',NOW(),'info@example.com','A','A');
+INSERT INTO java2.users(`id`,`name`,`surname`,`login`,`password`,`created`,`email`,`phone`,`role`,`status`)
+VALUES ('1','SUPER','ADMIN','sa','pugUOEJeVo53HZWYswYNKp8gx66AHVW6IfDXRMPc9wY=',NOW(),'info@example.com','22222222','A','A');
 

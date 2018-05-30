@@ -37,6 +37,7 @@ public class AddUserController {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         String role = request.getParameter("role");
         String status = request.getParameter("status");
         User userModel = new User();
@@ -45,6 +46,7 @@ public class AddUserController {
         userModel.setName(name);
         userModel.setSurname(surname);
         userModel.setEmail(email);
+        userModel.setPhone(phone);
         userModel.setStatus(status.charAt(0));
         userModel.setRole(role.charAt(0));
 
